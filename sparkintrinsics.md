@@ -88,7 +88,7 @@ Lets have a look at the transformed RDD operator graph (I will go into detail ab
 ````
 
 <div class="fig figcenter fighighlight">
-	<img src="{{'/assets/rdd.png' | prepend: site.baseurl }}">
+	<img src="{{'/assets/RDD.png' | prepend: site.baseurl }}">
 </div>
 
 What actually happens is, that 
