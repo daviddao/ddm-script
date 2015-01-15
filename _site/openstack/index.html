@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>OpenStack Setup</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Course materials and notes for TUM Lab Course: Distributed Data Mining.">
+    <link rel="canonical" href="/openstack/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- Google tracking -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46895817-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+
+  <div class="wrap title-wrap">
+    <a class="site-title" href="/">Distributed Data Mining Lab Course (TUM)</a>
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>OpenStack Setup</h1>
+  </header>
+
+  <article class="post-content">
+  <h3>Lothars Instantiation Cheatsheet</h3>
+
+<ol>
+<li>Login in to dataminer with SOCKS Proxy</li>
+<li>Login to OpenStack</li>
+<li>create a router</li>
+<li>assign a network: ext-net and select as gateway</li>
+<li>create a network 172.16.2.0/24 and a subnetwork inside</li>
+<li>add a connecting interface to the subnetwork to the router 172.16.2.1</li>
+<li>switch to computing and create a vm:</li>
+<li>under access and security: give a name and paste my public key in there</li>
+<li>under networking add LR_network as networks</li>
+<li>in Access &amp; Securty of compute (left menue) configure firewall rules:</li>
+<li>Rule: ALL ICMP, Direction: Ingress, Remote: CIDR CIDR: 0.0.0.0/0</li>
+<li>Rule: SSH Remote:CIDR CIDR: 0.0.0.0/0</li>
+<li>under compute instances: Actions: more -&gt; associate floating IP, and assign 192.168.... IP to the machine 
+(machine is visible in both networks)</li>
+<li>login from dataminer with ssh to 192.168....) address (cirros, &quot;cubswin:)&quot;)</li>
+</ol>
+
+<div class='fig figcenter'>
+  <img src='/assets/network.png'>
+</div>
+
+<h3>Automatic DNS Configuration</h3>
+
+<p>It can be annoying to configure DNS manually on each launched instance.
+(Otherwise it is not possible to download essential linux tools)
+Therefore, it is recommended to (additionally to the Cheatsheet) edit the network settings.</p>
+
+<ol>
+<li>Edit Subnet</li>
+<li>Go to Subnet details</li>
+<li>Add the IP of publicly available DNS nameservers </li>
+</ol>
+
+<div class='fig figcenter'>
+  <img src='/assets/editnet.png'>
+</div>
+
+  </article>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrap">
+
+    <div class="footer-col-1 column">
+      <ul>
+        
+        
+        
+        <li>
+          <a href="mailto:david.dao@tum.de">david.dao@tum.de</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col-2 column">
+        
+    </div>
+
+    <div class="footer-col-3 column">
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+    <!-- mathjax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </body>
+</html>

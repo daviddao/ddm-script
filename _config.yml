@@ -1,0 +1,12 @@
+# Site settings
+title: Distributed Data Mining Lab Course (TUM)
+email: david.dao@tum.de
+description: "Course materials and notes for TUM Lab Course: Distributed Data Mining."
+baseurl: ""
+url: 
+twitter_username: 
+github_username:  
+
+# Build settings
+markdown: redcarpet
+permalink: pretty

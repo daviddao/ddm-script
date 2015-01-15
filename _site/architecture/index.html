@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Mesos architecture</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="description" content="Course materials and notes for TUM Lab Course: Distributed Data Mining.">
+    <link rel="canonical" href="/architecture/">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/main.css">
+
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+
+    <!-- Google tracking -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-46895817-2', 'auto');
+      ga('send', 'pageview');
+
+    </script>
+    
+</head>
+
+
+    <body>
+
+    <header class="site-header">
+
+  <div class="wrap title-wrap">
+    <a class="site-title" href="/">Distributed Data Mining Lab Course (TUM)</a>
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrap">
+      <div class="post">
+
+  <header class="post-header">
+    <h1>Mesos architecture</h1>
+  </header>
+
+  <article class="post-content">
+  <p>In the following we provide you with a technical description of the Mesos Architecture.
+The picture and its scheduling example are directly taken from the Apache Mesos Project Page.</p>
+
+<div class='fig figcenter fighighlight'>
+  <img src='/assets/mesosarchitecture.jpg'>
+</div>
+
+<p>The above figure shows the main components of Mesos. Mesos consists of a master daemon that manages slave daemons running on each cluster node, and mesos applications (also called frameworks) that run tasks on these slaves.</p>
+
+<p>The master enables fine-grained sharing of resources (cpu, ram, …) across applications by making them resource offers. Each resource offer contains a list of . The master decides how many resources to offer to each framework according to a given organizational policy, such as fair sharing, or strict priority. To support a diverse set of policies, the master employs a modular architecture that makes it easy to add new allocation modules via a plugin mechanism.</p>
+
+<p>A framework running on top of Mesos consists of two components: a scheduler that registers with the master to be offered resources, and an executor process that is launched on slave nodes to run the framework’s tasks (/documentation/latest/see the App/Framework development guide for more details about application schedulers and executors). While the master determines how many resources are offered to each framework, the frameworks&#39; schedulers select which of the offered resources to use. When a frameworks accepts offered resources, it passes to Mesos a description of the tasks it wants to run on them. In turn, Mesos launches the tasks on the corresponding slaves.</p>
+
+<div class='fig figcenter fighighlight'>
+  <img src='/assets/architecture-example.jpg'>
+</div>
+
+<p>Let’s walk through the events in the figure.</p>
+
+<ol>
+<li>Slave 1 reports to the master that it has 4 CPUs and 4 GB of memory free. </li>
+<li>The master then invokes the allocation policy module, which tells it that framework 1 should be offered all available resources.</li>
+<li>The master sends a resource offer describing what is available on slave 1 to framework 1.</li>
+<li>The framework’s scheduler replies to the master with information about two tasks to run on the slave, using <2 CPUs, 1 GB RAM> for the first task, and <1 CPUs, 2 GB RAM> for the second task.</li>
+<li>Finally, the master sends the tasks to the slave, which allocates appropriate resources to the framework’s executor, which in turn launches the two tasks (depicted with dotted-line borders in the figure). Because 1 CPU and 1 GB of RAM are still unallocated, the allocation module may now offer them to framework 2.</li>
+</ol>
+
+<p>In addition, this resource offer process repeats when tasks finish and new resources become free.</p>
+
+  </article>
+
+</div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrap">
+
+    <div class="footer-col-1 column">
+      <ul>
+        
+        
+        
+        <li>
+          <a href="mailto:david.dao@tum.de">david.dao@tum.de</a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="footer-col-2 column">
+        
+    </div>
+
+    <div class="footer-col-3 column">
+      
+    </div>
+
+  </div>
+
+</footer>
+
+
+    <!-- mathjax -->
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    </body>
+</html>
