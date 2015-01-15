@@ -19,7 +19,7 @@ A framework running on top of Mesos consists of two components: a scheduler that
 
 
 <div class='fig figcenter fighighlight'>
-  <img src=""{{ '/assets/architecture-example.jpg' | prepend: site.baseurl }}">
+  <img src="{{ '/assets/architecture-example.jpg' | prepend: site.baseurl }}">
 </div>
 
 Let’s walk through the events in the figure.
