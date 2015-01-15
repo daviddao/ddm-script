@@ -16,7 +16,7 @@ Installing Spark for Mesos is surprisingly simple, given that we already have co
 1. Download Apache Spark and choose the correct Hadoop Version you are using 
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/Install.png'>
+	<img src="{{'/assets/Install.png' | prepend: site.baseurl }}">
 </div>
 
 2. Access your Namenode via ssh and `wget` this version by copy paste the link address!
@@ -24,7 +24,7 @@ Installing Spark for Mesos is surprisingly simple, given that we already have co
 
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/Upload.png'>
+	<img src="{{'/assets/Upload.png' | prepend: site.baseurl }}">
 </div>
 
 4. Edit `spark-env.sh` by setting following variables: 

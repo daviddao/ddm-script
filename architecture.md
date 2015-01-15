@@ -8,7 +8,7 @@ In the following we provide you with a technical description of the Mesos Archit
 The picture and its scheduling example are directly taken from the Apache Mesos Project Page.
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/mesosarchitecture.jpg'>
+  <img src="{{'/assets/mesosarchitecture.jpg' | prepend: site.baseurl }}">
 </div>
 
 The above figure shows the main components of Mesos. Mesos consists of a master daemon that manages slave daemons running on each cluster node, and mesos applications (also called frameworks) that run tasks on these slaves.
@@ -19,7 +19,7 @@ A framework running on top of Mesos consists of two components: a scheduler that
 
 
 <div class='fig figcenter fighighlight'>
-  <img src='/assets/architecture-example.jpg'>
+  <img src=""{{ '/assets/architecture-example.jpg' | prepend: site.baseurl }}">
 </div>
 
 Let’s walk through the events in the figure.

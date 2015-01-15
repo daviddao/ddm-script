@@ -23,7 +23,7 @@ permalink: /openstack/
 
 
 <div class='fig figcenter'>
-  <img src='/assets/network.png'>
+	<img src="{{'/assets/network.png' | prepend: site.baseurl }}">
 </div>
 
 ### Automatic DNS Configuration
@@ -36,6 +36,6 @@ Therefore, it is recommended to (additionally to the Cheatsheet) edit the networ
 3. Add the IP of publicly available DNS nameservers 
 
 <div class='fig figcenter'>
-  <img src='/assets/editnet.png'>
+	<img src="{{'/assets/editnet.png' | prepend: site.baseurl }}">
 </div>
 

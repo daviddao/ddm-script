@@ -24,7 +24,7 @@ Spark was seen as the best, general-purpose alternative, so all the major Hadoop
 Let's briefly discuss the anatomy of a Spark cluster, adapting [this discussion (and diagram) from the Spark documentation](http://spark.apache.org/docs/latest/cluster-overview.html). Consider the following diagram:
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/cluster-overview.png">
+	<img src="{{'/assets/cluster-overview.png' | prepend: site.baseurl }}">
 </div>
 
 Each program we'll write is a *Driver Program*. It uses a [SparkContext](http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.SparkContext) to communicate with the *Cluster Manager*, which is an abstraction over [Hadoop YARN](http://hortonworks.com/hadoop/yarn/), local mode, standalone (static cluster) mode, Mesos, and EC2.
@@ -88,7 +88,7 @@ Lets have a look at the transformed RDD operator graph (I will go into detail ab
 ````
 
 <div class="fig figcenter fighighlight">
-  <img src="/assets/rdd.png">
+	<img src="{{'/assets/rdd.png' | prepend: site.baseurl }}">
 </div>
 
 What actually happens is, that 
