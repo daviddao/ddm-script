@@ -1,0 +1,1354 @@
+<!--
+Google IO 2012/2013 HTML5 Slide Template
+
+Authors: Eric Bidelman <ebidel@gmail.com>
+         Luke Mahé <lukem@google.com>
+URL: https://code.google.com/p/io-2012-slides
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <title></title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+  <!--This one seems to work all the time, but really small on ipad-->
+  <!--<meta name="viewport" content="initial-scale=0.4">-->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
+  <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
+
+</head>
+<style>
+
+.link line {
+  stroke: #696969;
+}
+
+.link line.separator {
+  stroke: #fff;
+  stroke-width: 2px;
+}
+
+.node circle {
+  stroke: #000;
+  stroke-width: 1.5px;
+}
+
+.node text {
+  font: 10px sans-serif;
+  pointer-events: none;
+}
+
+</style>
+
+<body style="opacity: 0">
+<script src="http://d3js.org/d3.v2.min.js?2.9.6"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-46895817-2', 'auto');
+ga('send', 'pageview');
+</script>
+
+<link rel="stylesheet" type="text/css" href="style.css" />
+
+<script src="js/convnet-min.js"></script>
+<script src="js/convnet_demo.js"></script>
+
+<slides class="layout-widescreen">
+
+  <slide class="title-slide segue nobackground">
+    <aside class="gdbar"><img src="images/log.png"></aside>
+    <!-- The content of this hgroup is replaced programmatically through the slide_config.json. -->
+    <hgroup class="auto-fadein">
+      <h1 data-config-title><!-- populated from slide_config.json --></h1>
+      <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
+      <p data-config-presenter><!-- populated from slide_config.json --></p>
+    </hgroup>
+  </slide>
+
+  <slide>
+  <h1 class="black">Team Mesos</h1>
+    <article class="smaller">
+    <div style="float:center;margin-top: 120px">
+      <ul>
+      <img style="float:left;margin-left: 30px" width="250px" heigth="250px"  src="pics/david.png">
+      <img style="float:center;margin-left: 63px" width="250px" heigth="250px"  src="pics/iris.png">
+      <img style="float:right;margin-right: 50px" width="250px" heigth="250px"  src="pics/seb.png">
+      </ul>
+      <ul style="float:left;margin-left: 150px">David</ul>
+      <ul style="float:left;margin-left: 260px">Iris</ul>
+      <ul style="float:right;margin-right: 150px">Seb</ul>
+    </div>
+    </article>
+
+    </article>
+  </slide>
+
+
+  <slide>
+  <h1 class="black">Agenda</h1><br>
+    <article class="smaller">
+    <div style="float:left;margin-left:50px">
+      <ul>
+      <li>Preparation & Setup</li>
+      	<ul><li>OpenStack</li></ul>
+        <ul><li>Graphic User Interface</li></ul>
+        <ul><li>Mesos</li></ul>
+      <li>Hadoop & Spark</li>
+      <li>Performance Analysis</li>
+        <ul><li>Pig vs. Spark</li></ul>
+        <ul><li>MLLib vs. Mahout</li></ul>
+        <ul><li>PySpark vs. Scala Spark</li></ul>
+      <li>Distributed Data Mining</li>
+      <li>Live Demo</li>
+      <li>Conclusion</li>
+      </ul>
+    </div>
+    <div style="float:right">
+        <img style="float:right;margin-right: 180px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+    	<img style="float:right;margin-right: 150px;margin-top: 30px" width="200px" heigth="200px"  src="pics/mesos.png"><br><br>
+    	<img style="float:right;margin-right: 60px;margin-top: 40px" width="180px" heigth="180px"  src="pics/spark.png">
+    	<img style="float:right;margin-right: 10px;margin-top: 40px" width="180px" heigth="180px"  src="pics/hadoop.png">
+   	</div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br> 
+    <div>
+    <div style="float:left" width="300px">
+      <h1>OpenStack</h1> <br>
+      <ul>
+      <li>SOCKS Proxy</li>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
+	</div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br> 
+    <div>
+    <div style="float:left" width="300px">
+      <h1>OpenStack</h1> <br>
+      <ul>
+      <li>SOCKS Proxy</li>
+      <li>Login : Dataminer & Openstack</li>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
+    	<img style="float:right;margin-right: 250px;margin-top:40px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+	</div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+      <h1>OpenStack</h1> <br>
+      <ul>
+      <li>SOCKS Proxy</li>
+      <li>Login : Dataminer & Openstack</li>
+      <li>Create Instance</li>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
+    	<img style="float:right;margin-right: 250px;margin-top:40px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+    	<img style="float:right;margin-top:10px" width="600px" heigth="400px"  src="pics/network.png">	
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+      <h1>Graphic User Interface (GUI)</h1> <br>
+      <ul>
+      <li>SOCKS Proxy to VM on dataminer</li>
+      <li>GUI ports</li>
+      	<ul><li>Mesos GUI</li></ul>
+        <ul><li>Marathon GUI</li></ul>
+        <ul><li>Chronos GUI</li></ul>
+        <ul><li>Hadoop GUI</li></ul>
+      </ul>
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+      <h1>Mesos : Spark's Engine</h1><br>
+      <img style="float:center;margin-left:100px" width="700px" heigth="500px"  src="pics/Team.png">	
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Usibility (Setup & API)</h1><br>
+      <ul>
+      	<li>How much effort is Hadoop?</li>
+      	<li>How much effort is Spark? </li>
+      </ul>
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Spark in-depth</h1><br>
+      <ul>
+      	<li>Tools for spark</li>
+      </ul>
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Spark in-depth</h1><br>
+      <ul>
+      	<li>Tools for spark</li>
+      	<li>Spark language</li>
+      </ul>
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Spark in-depth</h1><br>
+      <ul>
+      	<li>Tools for spark</li>
+      	<li>Spark language</li>
+      	<li>Streaming</li>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/sparkStreaming.png"><br>
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Spark in-depth</h1><br>
+      <ul>
+      	<li>Tools for spark</li>
+      	<li>Spark language</li>
+      	<li>Streaming</li>
+      	<li>SQL</li>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/sparkSQL.png"><br>
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Mesos</h1><br>
+      <ul>
+      </ul>
+    </div>
+	<div style="float:right">
+		<img style="float:right;margin-top:20px" width="600px" heigth="400px" src="pics/mesosarchitecture.jpg">
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Cluster Management by Sebs FabScript</h1><br>
+      <ul>
+      </ul>
+    </div>
+	<div style="float:right">
+	<!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="200px">
+    	<h1>Performance comparision between different methods.</h1><br>
+      <ul>
+      	<li>Pig vs. Spark</li>
+      	<li>PySpark vs. ScalaSpark</li>
+      	<li>MLlib vs. Mahout</li>
+      </ul>
+    </div>    
+    </article>
+    <div style="float:right">
+		<img style="margin-right:220px;" width="200px"src="pics/img-myhadoop-bigger4.jpg">    
+    </div>
+
+  </slide>
+  
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Pig vs. Spark</h1><br>
+      <ul>
+      	<li>Code Length</li>
+      </ul>
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div id="container7" style="float:right; margin-right:50px; margin-top:150px; width: 400px; height: 400px;" width="300px"></div>  
+    <div style="float:left" width="300px">
+    	<h1>Pig vs. Spark</h1><br>
+      <ul>
+      	<li>Code Length</li>
+      	<li>Performance</li>
+      </ul>
+    </div>
+    <div id="container6" style="margin-top:150px; margin-left:50px; width: 400px; height: 400px;" width="300px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>PySpark vs. ScalaSpark</h1><br>
+      <ul>Analyzing Uniprot: Calculating the amino acid distribution.</ul>
+    </div><br>
+    <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>Movie Recommendation</h1><br>
+      <ul>Why?<br>One of Mahouts usable features Great Support on both (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
+    </div><br><br>
+    <div style="float:right">
+		<img style="margin-right:220px;" width="500px"src="pics/recommendation.png">    
+    </div>    
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>Movie Recommendation</h1><br>
+      <ul>Why?<br>One of Mahouts usable features Great Support on both (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
+    </div><br>    
+    </article><br>  
+    <div style="float:left">
+    //Here are either the Code snippets : Mahout & Spark or a live demo
+    </div>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>MLlib vs. Hadoop</h1><br>
+      <ul>Movie Recommender System:<br>On a dataset with 660M users, 2.4M items, and 3.5GB ratings LMlib runs in 40 minutes with 50 nodes.</ul>
+    </div><br>
+    <div id="container2" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Why is MLlib faster?</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>The current version of Mahout runs on Hadoop MapReduce, whose scheduling overhead and lack of support for iterative computation substantially slows down ALS</h1><br>
+      <ul>Performance hidden in the detail:<br> MLLibs Vector Data Type is highly performant for MLLib:<br>
+ 		// Here will be the CAST time comparisions of Vector, Breeze and Standard Java Arrays
+	  </ul>
+    </div><br>
+    
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>MLlib:</h1><br>
+      <ul>Vector Casts vs. Breeze Casts vs. Integer Cast</ul>
+    </div><br>
+    <div id="" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Distributed Data Mining</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>ML Pipeline</h1><br>
+      <ul>They are not that easy!</ul>
+    </div><br>
+    <div style="float:left">
+    	<img style="margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
+    </div> 
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Distributed Data Mining</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>ML Pipeline</h1><br>
+      <ul>They are not that easy!</ul>
+    </div><br>
+    <div style="float:left">
+    	<img style="margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
+    </div> 
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Distributed Data Mining</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>ML Pipeline</h1><br>
+      <ul>Image Classification Problem</ul>
+    </div><br>
+    </article>
+    <video style="float:center;margin-left: 150px" autoplay loop muted width="700px" heigth="500px"  src="pics/ddm.mp4">
+  </slide>
+
+  <slide>
+  <h1 class="black">Distributed Data Mining</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>ML Pipeline (Spark v1.2)</h1><br>
+      <ul></ul>
+    </div><br>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Spark for Science</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+    	<h1>Thunder Spark Neroscience</h1><br>
+      <ul></ul>
+    </div><br>
+    </article><br>
+    <video style="float:left;margin-left: 50px" autoplay loop muted width="400px" heigth="500px"  src="pics/trajectory.mp4">
+  </slide>
+
+  <slide>
+  <h1 class="black">Spark for Science</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+      <h1></h1><br>
+      <ul></ul>
+    </div><br>
+    <div id="container10" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
+    </article>
+  </slide>
+
+  <slide>
+    <hgroup>
+      <h1 class="black">Conclusion</h1>
+    </hgroup>
+    <article class="smaller">
+    <div style="float:left">
+      <h1>“Don’t jump in at the dead end”</h1><br>
+      <ul><ul><ul><ul>
+      <li>SOCKS Proxy</li>
+      <li>Think ifferently</li>
+      <li>Consider alternative approaches</li>
+      <li>...</li>
+      </ul></ul></ul></ul>
+      </div>
+    </article>
+  </slide>
+
+
+  <!-- Some Other Charts!!! -->
+  <!-- <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller">
+    <br>
+    <div id="container5" style="width: 950px; height: 500px;"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller">
+    <br>
+    <div id="container6" style="width: 450px; height: 500px; float:left;"></div>
+    <div id="container7" style="width: 450px; height: 500px; float:right;"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller">
+    <br>
+    <div id="container9" style="width: 900px; height: 500px; float:center;"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1>Pie Chart</h1>
+    <article class="smaller">
+    <br>
+    <div id="container4" style="width: 950px; height: 500px;"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1>Performance Analysis</h1>
+    <article class="smaller">
+    <br>
+    <div id="container11" style="width: 950px; height: 500px;"></div>
+    </article>
+  </slide> -->
+  
+
+  <slide class="thank-you-slide segue nobackground">
+    <aside class="gdbar right"><img src="images/log.png"></aside>
+    <article class="flexbox vleft auto-fadein">
+      <h2>&lt;Thank You!&gt;</h2>
+      <p>Questions?</p>
+    </article>
+    <p class="auto-fadein" data-config-contact>
+      <!-- populated from slide_config.json -->
+    </p>
+  </slide>
+
+   <script>
+
+var width = 500,
+    height = 500;
+
+var color = d3.scale.category20();
+
+var radius = d3.scale.sqrt()
+    .range([0, 6]);
+
+var svg = d3.selectAll(".iris").append("svg")
+    .attr("width", width)
+    .attr("height", height);
+
+var force = d3.layout.force()
+    .size([width, height])
+    .charge(-400)
+    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 20; });
+
+var vis = function(graph) {
+  force
+      .nodes(graph.nodes)
+      .links(graph.links)
+      .on("tick", tick)
+      .start();
+
+  var link = svg.selectAll(".link")
+      .data(graph.links)
+    .enter().append("g")
+      .attr("class", "link");
+
+  link.append("line")
+      .style("stroke-width", function(d) { return (d.bond * 2 - 1) * 2 + "px"; });
+
+  link.filter(function(d) { return d.bond > 1; }).append("line")
+      .attr("class", "separator");
+
+  var node = svg.selectAll(".node")
+      .data(graph.nodes)
+    .enter().append("g")
+      .attr("class", "node")
+      .call(force.drag);
+
+  node.append("circle")
+      .attr("r", function(d) { return radius(d.size); })
+      .style("fill", function(d) { return color(d.atom); });
+
+  node.append("text")
+      .attr("dy", ".35em")
+      .attr("text-anchor", "middle")
+      .text(function(d) { return d.atom; });
+
+  function tick() {
+    link.selectAll("line")
+        .attr("x1", function(d) { return d.source.x; })
+        .attr("y1", function(d) { return d.source.y; })
+        .attr("x2", function(d) { return d.target.x; })
+        .attr("y2", function(d) { return d.target.y; });
+
+    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+  }
+};
+
+var graph = 
+{
+  "nodes": [
+    {"atom": "C", "size": 12},
+    {"atom": "C", "size": 12},
+    {"atom": "C", "size": 12},
+    {"atom": "N", "size": 14},
+    {"atom": "H", "size": 1},
+    {"atom": "O", "size": 16},
+    {"atom": "O", "size": 16},
+    {"atom": "H", "size": 1},
+    {"atom": "H", "size": 1},
+    {"atom": "H", "size": 1},
+    {"atom": "H", "size": 1},
+    {"atom": "H", "size": 1},
+    {"atom": "H", "size": 1}
+  ],
+  "links": [
+    {"source": 0, "target": 1,  "bond": 1},
+    {"source": 1, "target": 2,  "bond": 1},
+    {"source": 1, "target": 3,  "bond": 1},
+    {"source": 2, "target": 5,  "bond": 2},
+    {"source": 2, "target": 6,  "bond": 1},
+    {"source": 1, "target": 4,  "bond": 1},
+    {"source": 3, "target": 10, "bond": 1},
+    {"source": 3, "target": 11, "bond": 1},
+    {"source": 0, "target": 7,  "bond": 1},
+    {"source": 0, "target": 8,  "bond": 1},
+    {"source": 0, "target": 9,  "bond": 1},
+    {"source": 5, "target": 12, "bond": 1}
+  ]
+};
+
+vis(graph);
+
+</script>
+
+
+<script>
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-XXXXXXXX-1']);
+_gaq.push(['_trackPageview']);
+
+(function() {
+  var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+  ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+  var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+})();
+</script>
+
+<!-- Hadoop vs. Spark -->
+<script>
+  $(function () {
+  $('#container1').highcharts({
+      title: {
+          text: 'Hadoop vs. Spark',
+          x: -20 //center
+      },
+      subtitle: {
+          text: 'Source: blog.cloudera.com',
+          x: -20
+      },
+      xAxis: {
+          title: {
+              text: 'Number of Iterations'
+          },
+          categories: ['1', '5', '10', '20', '30']
+      },
+      yAxis: {
+          title: {
+              text: 'Running Time (s)'
+          },
+          plotLines: [{
+              value: 0,
+              width: 1,
+              color: '#808080'
+          }]
+      },
+      tooltip: {
+          valueSuffix: 'sec'
+      },
+      legend: {
+          layout: 'vertical',
+          align: 'right',
+          verticalAlign: 'middle',
+          borderWidth: 0
+      },
+      series: [{
+          name: 'Hadoop',
+          data: [100, 630, 1220, 2400, 3480]
+      }, {
+          name: 'Spark',
+          data: [80, 95, 100, 110, 130]
+      }]
+  });
+  });
+</script>
+
+<!-- MLlib vs. Mahout -->
+<script>
+$(function () {
+    $('#container2').highcharts({
+        chart: {
+            type: 'spline',
+            inverted: true
+        },
+        title: {
+            text: 'MLlib vs. Mahout'
+        },
+        subtitle: {
+            text: 'ALS Amazon Reviews on 16 Nodes'
+        },
+        xAxis: {
+            reversed: false,
+            title: {
+                text: 'Running Time (m)'
+            },
+            showLastLabel: true
+        },
+        yAxis: {
+            title: {
+                text: 'Number of Rating'
+            },
+            labels: {
+                formatter: function () {
+                    return this.value + 'M';
+                }
+            },
+            lineWidth: 2
+        },
+        tooltip: {
+            headerFormat: '<b>{series.name}</b><br/>',
+            pointFormat: '{point.y}M: {point.x} mins'
+        },
+        plotOptions: {
+            spline: {
+                marker: {
+                    enable: false
+                }
+            }
+        },
+        series: [{
+            name: 'MLlib',
+            data: [[2, 60], [2.5, 70], [3, 120], [5, 240], [13.5, 470],
+                [20, 710], [32, 950]]
+        },
+        {
+            name: 'Mahout',
+            color: '#FF8C00',
+            data: [[23.5, 70], [46.5, 120]]
+        }]
+    });
+});
+</script>
+
+<!-- Combination Chart -->
+<script>
+  $(function () {
+    $('#container3').highcharts({
+        title: {
+            text: 'Combination chart'
+        },
+        xAxis: {
+            categories: ['Apples', 'Oranges', 'Pears', 'Bananas', 'Plums']
+        },
+        labels: {
+            items: [{
+                html: 'Total fruit consumption',
+                style: {
+                    left: '50px',
+                    top: '18px',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'black'
+                }
+            }]
+        },
+        series: [{
+            type: 'column',
+            name: 'Jane',
+            data: [3, 2, 1, 3, 4]
+        }, {
+            type: 'column',
+            name: 'John',
+            data: [2, 3, 5, 7, 6]
+        }, {
+            type: 'column',
+            name: 'Joe',
+            data: [4, 3, 3, 9, 0]
+        }, {
+            type: 'spline',
+            name: 'Average',
+            data: [3, 2.67, 3, 6.33, 3.33],
+            marker: {
+                lineWidth: 2,
+                lineColor: Highcharts.getOptions().colors[3],
+                fillColor: 'white'
+            }
+        }, {
+            type: 'pie',
+            name: 'Total consumption',
+            data: [{
+                name: 'Jane',
+                y: 13,
+                color: Highcharts.getOptions().colors[0] // Jane's color
+            }, {
+                name: 'John',
+                y: 23,
+                color: Highcharts.getOptions().colors[1] // John's color
+            }, {
+                name: 'Joe',
+                y: 19,
+                color: Highcharts.getOptions().colors[2] // Joe's color
+            }],
+            center: [100, 80],
+            size: 100,
+            showInLegend: false,
+            dataLabels: {
+                enabled: false
+            }
+        }]
+    });
+});
+</script>
+
+<!-- Pie Chart -->
+<script>
+  $(function () {
+
+    // Make monochrome colors and set them as default for all pies
+    Highcharts.getOptions().plotOptions.pie.colors = (function () {
+        var colors = [],
+            base = Highcharts.getOptions().colors[0],
+            i;
+
+        for (i = 0; i < 10; i += 1) {
+            // Start out with a darkened base color (negative brighten), and end
+            // up with a much brighter color
+            colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+        }
+        return colors;
+    }());
+
+    // Build the chart
+    $('#container4').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: null,
+            plotShadow: false
+        },
+        title: {
+            text: 'Total Time Spent'
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                }
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Time spent on:',
+            data: [
+                ['Setup', 45.0],
+                ['Machine Learning', 30.0],
+                ['Bugfix', 25.0]
+            ]
+        }]
+    });
+});
+</script>
+
+<!-- setup time -->
+<script>
+  $(function () {
+    $('#container5').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Cluster Setup vs. FabScript'
+        },
+        subtitle: {
+            text: ''
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Time (min)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total Time: <b>{point.y:.1f} mins</b>'
+        },
+        series: [{
+            name: 'Duration',
+            data: [
+                ['Cluster Setup', 7.38],
+                ['Script Setup', 0.30],
+            ],
+            color: '#87CEFA',
+            dataLabels: {
+                enabled: true,
+                //rotation: -90,
+                color: '#FFFFFF',
+                align: 'center',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>
+
+</script>
+
+<!-- pig vs. spark -->
+<script>
+  $(function () {
+    $('#container6').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Pig vs. Spark'
+        },
+        subtitle: {
+            text: 'Number of 54,874,995 of rows.'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Duration (s)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Duration Time: <b>{point.y:.1f} mins</b>'
+        },
+        series: [{
+            name: 'Duration',
+            data: [
+                ['Pig', 7.38],
+                ['Spark', 2.06],
+                ['Spark(8 cores)', 1.3]
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>
+
+<script>
+  $(function () {
+    $('#container7').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Pig vs. Spark'
+        },
+        subtitle: {
+            text: 'Number of 2,318,059 of distinct words.'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Duration (s)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Duration Time: <b>{point.y:.1f} mins</b>'
+        },
+        series: [{
+            name: 'Duration',
+            data: [
+                ['Pig', 28.5],
+                ['Spark', 9.4],
+                ['Spark(8 cores)', 5.38]
+            ],
+            color: '#ADFF2F',
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>
+
+<!-- pig vs. spark -->
+<script>
+  $(function () {
+    $('#container9').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Pig vs. Spark'
+        },
+        xAxis: {
+            categories: ['Pig', 'Spark', 'Spark(8 cores)']
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Duration (min)'
+            },
+            stackLabels: {
+                enabled: true,
+                style: {
+                    fontWeight: 'bold',
+                    color: (Highcharts.theme && Highcharts.theme.textColor) || 'gray'
+                }
+            }
+        },
+        legend: {
+            align: 'right',
+            x: -30,
+            verticalAlign: 'top',
+            y: 25,
+            floating: true,
+            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || 'white',
+            borderColor: '#CCC',
+            borderWidth: 1,
+            shadow: false
+        },
+        tooltip: {
+            formatter: function () {
+                return '<b>' + this.x + '</b><br/>' +
+                    this.series.name + ': ' + this.y + ' mins<br/>' +
+                    'Total: </b>' + this.point.stackTotal + ' mins';
+            }
+        },
+        plotOptions: {
+            column: {
+                stacking: 'normal',
+                dataLabels: {
+                    enabled: true,
+                    color: (Highcharts.theme && Highcharts.theme.dataLabelsColor) || 'white',
+                    style: {
+                        textShadow: '0 0 3px black'
+                    }
+                }
+            }
+        },
+        series: [{
+            name: 'Number of Rows: 54,874,995',
+            data: [7.38, 2.06, 1.30]
+        }, {
+            name: 'Number of Distinct Words: 2,318,059',
+            data: [28.5, 9.4, 5.38]
+        }]
+    });
+});
+</script>
+
+<!-- matlab vs. spark -->
+<script>
+  $(function () {
+    $('#container10').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Regression'
+        },
+        subtitle: {
+            text: 'Source: WorldClimate.com'
+        },
+        xAxis: {
+            title: {
+                text: 'Size (GB)'
+            },
+            categories: [100, 200, 400, 800]
+        },
+        yAxis: {
+            min: 1,
+            max: 12000,
+            title: {
+                text: 'Runtime (sec)'
+            },
+            labels: {
+              formatter: function(){
+                return (Math.floor (this.value) * 10);
+              }
+            }
+        },
+        tooltip: {
+            headerFormat: '<span style="font-size:13px">{point.key} GB</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} sec</b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        },
+        plotOptions: {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        },
+        series: [{
+            name: 'Workstation (Matlab)',
+            data: [6000, 8000, 10000, 12000]
+
+        }, {
+            name: 'Cluster (Spark)',
+            data: [40, 70, 110, 130]
+
+        }]
+    });
+});
+</script>
+
+<!-- regression -->
+<script>
+  $(function () {
+    $('#container11').highcharts({
+        chart: {
+            plotBackgroundColor: null,
+            plotBorderWidth: 0,
+            plotShadow: false
+        },
+        title: {
+            text: 'Regression ICA:<br>73.7s',
+            align: 'center',
+            verticalAlign: 'middle',
+            y: 0
+        },
+        tooltip: {
+            pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+        },
+        plotOptions: {
+            pie: {
+                dataLabels: {
+                    enabled: true,
+                    distance: -50,
+                    style: {
+                        fontWeight: 'bold',
+                        color: 'white',
+                        textShadow: '0px 1px 2px black'
+                    }
+                },
+                startAngle: 0,
+                endAngle: 360,
+                center: ['50%', '50%']
+            }
+        },
+        series: [{
+            type: 'pie',
+            name: 'Browser share',
+            innerSize: '50%',
+            data: [
+                ['Load & Parse',   50.0],
+                ['Compute',       10.0],
+                ['Collect & Save', 40.0]
+            ]
+        }]
+    });
+});
+</script>
+
+<script>
+  $(function () {
+    $('#container12').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Python vs. Scala'
+        },
+        subtitle: {
+            text: 'Spark performance: Analyzing Uniport (547.085 entries)'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Total Time (sec)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Total Time: <b>{point.y:.1f} secs</b>'
+        },
+        series: [{
+            name: 'Duration',
+            data: [
+                ['Scala Spark', 33.53],
+                ['Python Spark', 65.28],
+            ],
+            color: '#87CEFA',
+            dataLabels: {
+                enabled: true,
+                //rotation: -90,
+                color: '#FFFFFF',
+                align: 'center',
+                x: 4,
+                y: 10,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>
+<!--[if IE]>
+  <script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+  <script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+</body>
+</html>
