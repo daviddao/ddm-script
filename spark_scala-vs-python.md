@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Spark: Scala vs. Python (Performance & Usability)
+title: "Spark: Scala vs. Python (Performance & Usability)"
 permalink: /spark_scala-vs-python/
 ---
 
