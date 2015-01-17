@@ -110,12 +110,12 @@ In `etc/hadoop/yarn-site.xml`, specify the ResourceManager IP, which here we jus
 
 The above configs need to eventually be on both the NameNode and the DataNode, so we applied them to our single machine , then created a snapshot of the machine. And that is our Hadoop image that we'll use to create our cluster.
 
-(Optional) In `etc/hadoop/hdfs-site.xml`, specify the Secondary Node IP, which is by default set to '''0.0.0.0.0:50090''' which basically points to all the ip addresses currently configured on the machine and the `dfs.replication` which is how many copies to store for each block of a file in HDFS (default:3):
+(Optional) In `etc/hadoop/hdfs-site.xml`, specify the Secondary Node IP, which is by default set to '''0.0.0.0.0:50090''' which basically points to all the ip addresses currently configured on the machine and the `dfs.replication` which is how many copies to store for each block of a file in HDFS.
 
 ````
     <property>
         <name>dfs.replication</name>
-        <value>3</value>
+        <value>2</value>
     </property>
     <property>
         <name>dfs.namenode.secondary.http-address</name>
