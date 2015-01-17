@@ -35,3 +35,15 @@ print(predictionsAndRatings.take(5))
 print("avgErr: %f" % avgErr)
 print("stdErr: %f" % stdErr)
 ```
+
+Industrial_&_Scientific set:
+
+```
+The best model was trained with rank = 12 and lambda = 0.1, and numIter = 20, and its RMSE on the test set is 0.374325. (AVG= 0.601009)
+```
+
+Sports & Outdoor:
+
+```
+```
+

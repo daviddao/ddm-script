@@ -7,13 +7,29 @@ permalink: /hadoop_reduce-vs-pig/
 
 See the github folder ["wordcount"](https://github.com/greenify/ddm/tree/master/wordcount)
 
-### Results
+### Results (local)
 
 Hadoop Reduce: 11:42.41
-Pig: 19:02.59
+Pig: 10:09.30
 PySpark: 4:07.72 
 JavaSpark:  1:00.63
 Spark: 58.861
+
+(1.4G, 32.116.000 lines)
+
+### Results (ec2, standalone mode)
+
+JavaSpark: 10m40.727s 
+Spark: 10m14.702s 
+
+(6.5G, 160.580.000 lines)
+
+### Results (ec2, with 3 nodes)
+
+ScalaSpark: 2m57.832s
+JavaSpark: 3m5.509s 
+
+(6.5G, 160.580.000 lines)
 
 ### Generate dummy data
 
@@ -21,7 +37,6 @@ Spark: 58.861
 for i in {1..1000}; do cat inpt/pg5000.txt >> input/dummy ; done
 ```
 
-(1.4G, 32.116.000 lines)
 
 ### Pig
 
@@ -45,13 +60,13 @@ hadoop jar wordcount.jar WordCount ../input/dummy out
 ### PySpark
 
 ```
-spark-submit wordcount.py input/dummy output/py
+spark-submit wordcount.py input/dummy out/py
 ```
 
 or directly via
 
 ```
-./wordcount.py input/dummy output/py
+./wordcount.py input/dummy out/py
 ```
 
 ### JavaSpark
