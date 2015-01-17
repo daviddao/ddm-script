@@ -5,7 +5,7 @@ permalink: /hadoop_reduce-vs-pig/
 ---
 
 
-See the github folder "wordcount"
+See the github folder ["wordcount"](https://github.com/greenify/ddm/tree/master/wordcount)
 
 ### Results
 
