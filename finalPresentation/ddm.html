@@ -348,21 +348,8 @@ ga('send', 'pageview');
     </div>
 
   </slide>
-  
-  <slide>
-  <h1 class="black">Performance Analysis</h1>
-    <article class="smaller"><br>
-    <div>
-    <div style="float:left" width="300px">
-    	<h1>Pig vs. Spark</h1><br>
-      <ul>
-      	<li>Code Length</li>
-      </ul>
-    </div>
-    </article>
-  </slide>
 
-  <slide>
+   <slide>
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div id="container7" style="float:right; margin-right:50px; margin-top:150px; width: 400px; height: 400px;" width="300px"></div>  
@@ -1023,7 +1010,7 @@ $(function () {
             text: 'Pig vs. Spark'
         },
         subtitle: {
-            text: 'Number of 54,874,995 of rows.'
+            text: 'Counting words on 32.116.000 lines (1.4G)'
         },
         xAxis: {
             type: 'category',
@@ -1050,9 +1037,12 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-                ['Pig', 7.38],
-                ['Spark', 2.06],
-                ['Spark(8 cores)', 1.3]
+                ['Hadoop Reduce', 702.41],
+                ['Pig', 609.30],
+                ['PySpark', 247.47],
+                ['JavaSpark', 60.63],
+                ['Spark', 58.86],
+                ['Spark(8 cores)', 53.25]
             ],
             dataLabels: {
                 enabled: true,
@@ -1079,10 +1069,10 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Pig vs. Spark'
+            text: 'Spark (distributed)'
         },
         subtitle: {
-            text: 'Number of 2,318,059 of distinct words.'
+            text: '160.580.000 lines (6.5G)'
         },
         xAxis: {
             type: 'category',
@@ -1109,9 +1099,12 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-                ['Pig', 28.5],
-                ['Spark', 9.4],
-                ['Spark(8 cores)', 5.38]
+                ['ScalaSpark (ec2, 1 n)', 640.72],
+                ['JavaSpark (ec2, 1 n)', 614.70],
+                ['ScalaSpark (ec2, 3 n)', 177.83],
+                ['JavaSpark(ec2, 3 n)', 185.50],
+                ['ScalaSpark (local, 8 c)', 0.0],
+                ['ScalaSpark (local, 8 c)', 0.0],
             ],
             color: '#ADFF2F',
             dataLabels: {
