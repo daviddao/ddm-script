@@ -1,8 +1,9 @@
 ---
 layout: page
-title: "Recommender: MLLib and Mahout Comparision"
-permalink: recommender
+mathjax: true
+permalink: /recommender/
 ---
+
 
 ```
 lines = sc.textFile(inputFile)

@@ -22,3 +22,19 @@ B.Sc from Karlsruhe Institute of Technology, Germany and former Google Summer of
 **Iris**
 Second Year Graduate Student at Technical University Munich.
 B.Sc with highest distinction from Tamkang University, Taiwan.
+
+**Seb**
+Third Year Undergraduate Student at Technical University and at Ludwig Maximilian University Munich. 
+
+
+## Acknowledgement
+
+<div class="fig figcenter fighighlight">
+  <img src="{{'/assets/lothar_richter.jpg' | prepend: site.baseurl }}">
+  <img src="{{'/assets/tim.jpg' | prepend: site.baseurl }}">
+  <div class="figcaption">
+    Many kudos to our lecturers and technical support team Lothar and Tim for offering this unique and interesting lab course. 
+    We appreciate the time you guys invested in it! 
+  </div>
+</div>
+
