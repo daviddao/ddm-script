@@ -1,7 +1,7 @@
 ---
 layout: page
 title: "Cluster management: Automatic Setup using FabScript (Coming soon)"
-permalink: fabscript 
+permalink: /fabscript/ 
 ---
 
 View this on [Github](https://github.com/greenify/hadoop-auto-conf)
