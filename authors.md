@@ -7,6 +7,7 @@ permalink: /authors/
 <div class="fig figcenter fighighlight">
   <img src="{{'/assets/david.png' | prepend: site.baseurl }}">
   <img src="{{'/assets/iris.png' | prepend: site.baseurl }}">
+  <img src="{{'/assets/seb.png' | prepend: site.baseurl }}">
   <div class="figcaption">
     Our Distributed Data Mining Team alias Team Mesos: David, Iris and Sebastian.
   </div>
@@ -22,6 +23,9 @@ B.Sc from Karlsruhe Institute of Technology, Germany and former Google Summer of
 **Iris**
 Second Year Graduate Student at Technical University Munich.
 B.Sc with highest distinction from Tamkang University, Taiwan.
+
+**Seb**
+Third Year Undergraduate Student at Technical University and at Ludwig Maximilian University Munich. 
 
 
 ## Acknowledgement
