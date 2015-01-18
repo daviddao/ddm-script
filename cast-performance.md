@@ -10,6 +10,11 @@ As we can see in the following Cast performance experiements, MLLibs Vector is o
 
 ### Results 
 
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
 <div id="cast"></div>
 
 <script>
