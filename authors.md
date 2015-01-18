@@ -7,7 +7,6 @@ permalink: /authors/
 <div class="fig figcenter fighighlight">
   <img src="{{'/assets/david.png' | prepend: site.baseurl }}">
   <img src="{{'/assets/iris.png' | prepend: site.baseurl }}">
-  <img src="{{'/assets/seb.png' | prepend: site.baseurl }}">
   <div class="figcaption">
     Our Distributed Data Mining Team alias Team Mesos: David, Iris and Sebastian.
   </div>
