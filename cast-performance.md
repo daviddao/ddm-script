@@ -49,7 +49,7 @@ $(function () {
             enabled: false
         },
         tooltip: {
-            pointFormat: 'Duration Time: <b>{point.y:.1f} s</b>'
+            pointFormat: 'Duration Time: <b>{point.y:.1f} ms</b>'
         },
         series: [{
             name: 'Duration',
