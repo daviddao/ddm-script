@@ -17,14 +17,17 @@ permalink: /authors/
 
 **David**
 First Year Graduate Student at Technical University Munich, Germany. 
-B.Sc from Karlsruhe Institute of Technology, Germany and former Google Summer of Code Student.
+B.Sc from Karlsruhe Institute of Technology, Germany, former Google Summer of Code Student and Graduate Student Researcher in Heidelberg.
+Also Science [Blogger](http://forschungspreisen.de/) and Book(chapter) Author.
 
 **Iris**
-Second Year Graduate Student at Technical University Munich.
-B.Sc with highest distinction from Tamkang University, Taiwan.
+Second Year Graduate Student at Technical University Munich doing her thesis on computer vision in medicine.
+B.Sc with highest distinction from Taiwan. Addicted to GitHub commits and Netflix series. 
 
 **Seb**
 Third Year Undergraduate Student at Technical University and at Ludwig Maximilian University Munich. 
+Also former Google Summer of Code Student and current Lead Developer of BioJavaScript.
+Reads bioinformatics paper on-the-fly and strongly rejects bad code ("Bro, do you even code?")
 
 
 ## Acknowledgement
