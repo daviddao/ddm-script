@@ -156,14 +156,13 @@ ga('send', 'pageview');
   <slide>
   <h1 class="black">Running ML locally on >40 GB</h1>
     <article class="smaller"><br> 
-    <img src="pics/giphy.gif">
-    <div style="float:bottom" width="300px">
-      <h1 class="build">One computer is not enough! </h1> <br>
+    <div style="float:left">
+      <img src="pics/giphy.gif" style="margin-left: 300px">
+      <h1 class="build" style="margin-left: 280px">One computer is not enough! </h1> <br>
       <ul class="build">
       <li class="to-build">We run R on it. Loading the data already crushed the system</li>
-      <li class="to-build">Even with small datasets, complex ML tasks like image recognition can crush the system
-        <img src="pics/classify.png">
-      </li>
+      <li class="to-build">Even with small datasets, complex ML tasks like image recognition can crush the system </li> 
+        <img src="pics/classify.png" style="margin-left: 250px" width="400px">
       <li class="to-build">Conclusion: We need to scale it up!</li>
       </ul>
     </div>
@@ -177,16 +176,23 @@ ga('send', 'pageview');
     <div style="float:left" width="300px">
       <h1>OpenStack</h1> <br>
       <ul>
-      <li>1. Problem: X11 Forwarding is superslow</li>
+      <li><b>Problem</b>: X11 Forwarding is superslow</li>
       </ul>
     </div>
     </article>
   </slide>
 
   <slide>
-  <h1 class="black">SOCKS Proxy Solution</h1>
-    <article class="smaller"> <br><br><br><br>
-       <pre class="prettyprint" data-lang="bash">
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br> 
+    <div>
+    <div style="float:left" width="300px">
+      <h1>OpenStack</h1> <br>
+      <ul>
+      <li><b>SOCKS</b> Proxy Solution</li>
+      </ul>
+
+      <pre class="prettyprint" data-lang="bash">
        ssh -TND [LOCALPORT] -p 8574 [username]@dataminer.informatik.tu-muenchen.de
       </pre>
 
@@ -201,6 +207,9 @@ ga('send', 'pageview');
         ubuntu@[ip to your machine]
       </pre>
       </div>
+
+    </div>
+
     </article>
   </slide>
 
@@ -252,7 +261,7 @@ ga('send', 'pageview');
       <li>SOCKS Proxy</li>
       <li>Login : Dataminer & Openstack</li>
       <li>Created Instance</li>
-      <li>Problem: Debian Wheezy has <br> insufficient rootfs memory.
+      <li><b>Problem</b>: Debian Wheezy has <br> insufficient rootfs memory.
       </ul>
     </div> 
   <div style="float:right">
@@ -273,7 +282,7 @@ ga('send', 'pageview');
       <li>SOCKS Proxy</li>
       <li>Login : Dataminer & Openstack</li>
       <li>Created Instance</li>
-      <li>Solution: Switched to <br> Ubuntu LTE
+      <li><b>Solution</b>: Switched to <br> Ubuntu LTE
       <li>We provided Ubuntu for <br> the whole course
       </ul>
     </div> 
@@ -434,18 +443,30 @@ ga('send', 'pageview');
 
   </slide>
 
-   <slide>
+  <slide>
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
-    <div id="container7" style="float:right; margin-right:50px; margin-top:150px; width: 400px; height: 400px;" width="300px"></div>  
+    <!-- <div id="container7" style="float:right; margin-right:50px; margin-top:150px; width: 400px; height: 400px;" width="300px"></div>   -->
     <div style="float:left" width="300px">
     	<h1>Pig vs. Spark</h1><br>
       <ul>
-      	<li>Code Length</li>
       	<li>Performance</li>
       </ul>
     </div>
-    <div id="container6" style="margin-top:150px; margin-left:50px; width: 400px; height: 400px;" width="300px"></div>
+    <div id="container6" style="margin-top:50px; margin-left:200px; width: 650px; height: 500px;" width="300px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+      <h1>Pig vs. Spark</h1><br>
+      <ul>
+        <li>Performance</li>
+      </ul>
+    </div>
+    <div id="container7" style="margin-top:50px; margin-left:200px; width: 650px; height: 500px;" width="300px"></div>  
     </article>
   </slide>
 
@@ -1114,13 +1135,13 @@ $(function () {
             ],
             dataLabels: {
                 enabled: true,
-                rotation: -90,
+                rotation: 0,
                 color: '#FFFFFF',
-                align: 'right',
-                x: 4,
-                y: 10,
+                align: 'center',
+                x: 0,
+                y: 20,
                 style: {
-                    fontSize: '13px',
+                    fontSize: '12px',
                     fontFamily: 'Verdana, sans-serif',
                     textShadow: '0 0 3px black'
                 }
@@ -1174,16 +1195,16 @@ $(function () {
                 ['ScalaSpark (local, 8 c)', 0.0],
                 ['ScalaSpark (local, 8 c)', 0.0],
             ],
-            color: '#ADFF2F',
+            color: '#66CDAA',
             dataLabels: {
                 enabled: true,
-                rotation: -90,
+                rotation: 0,
                 color: '#FFFFFF',
-                align: 'right',
-                x: 4,
-                y: 10,
+                align: 'center',
+                x: 0,
+                y: 20,
                 style: {
-                    fontSize: '13px',
+                    fontSize: '12px',
                     fontFamily: 'Verdana, sans-serif',
                     textShadow: '0 0 3px black'
                 }
@@ -1412,8 +1433,8 @@ $(function () {
                 //rotation: -90,
                 color: '#FFFFFF',
                 align: 'center',
-                x: 4,
-                y: 10,
+                x: 0,
+                y: 20,
                 style: {
                     fontSize: '13px',
                     fontFamily: 'Verdana, sans-serif',
