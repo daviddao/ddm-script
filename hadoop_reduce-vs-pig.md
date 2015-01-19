@@ -14,6 +14,7 @@ Pig: 10:09.30
 PySpark: 4:07.72 
 JavaSpark:  1:00.63
 Spark: 58.861
+Spark (8 cores): 53.247
 
 (1.4G, 32.116.000 lines)
 
@@ -30,6 +31,21 @@ ScalaSpark: 2m57.832s
 JavaSpark: 3m5.509s 
 
 (6.5G, 160.580.000 lines)
+
+### Results (local, 8 cores)
+
+ScalaSpark: 1m40.07s
+JavaSpark: 2m12.98s
+PySpark: 11m01.30s
+
+1 core:
+
+JavaSpark: 5m12.84s
+ScalaSpark: 5m11.33s
+PySpark:  
+
+(6.5G, 160.580.000 lines)
+
 
 ### Generate dummy data
 
