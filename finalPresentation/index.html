@@ -11,10 +11,6 @@ URL: https://code.google.com/p/io-2012-slides
   <title></title>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">-->
-  <!--<meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-  <!--This one seems to work all the time, but really small on ipad-->
-  <!--<meta name="viewport" content="initial-scale=0.4">-->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" media="all" href="theme/css/default.css">
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
@@ -96,6 +92,19 @@ ga('send', 'pageview');
     </article>
   </slide>
 
+  <slide>
+    <hgroup>
+      <h1 class="black">Handout and Summary</h1>
+    </hgroup>
+    <article class="smaller">
+    <div style="float:left">
+    <href a="http://ddm.tum.by"><h2>ddm.tum.by</h2></href>
+      </div>
+    </article>
+    <div style="float:right">
+    <img style="float:right;margin-right:100px;" width="400px" src="pics/script.png">    
+    </div>
+  </slide>
 
   <slide>
   <h1 class="black">Agenda</h1><br>
@@ -103,14 +112,8 @@ ga('send', 'pageview');
     <div style="float:left;margin-left:50px">
       <ul>
       <li>Preparation & Setup</li>
-      	<ul><li>OpenStack</li></ul>
-        <ul><li>Graphic User Interface</li></ul>
-        <ul><li>Mesos</li></ul>
-      <li>Hadoop & Spark</li>
+      <li>Hadoop & Spark </li>
       <li>Performance Analysis</li>
-        <ul><li>Pig vs. Spark</li></ul>
-        <ul><li>MLLib vs. Mahout</li></ul>
-        <ul><li>PySpark vs. Scala Spark</li></ul>
       <li>Distributed Data Mining</li>
       <li>Live Demo</li>
       <li>Conclusion</li>
@@ -126,18 +129,76 @@ ga('send', 'pageview');
   </slide>
 
   <slide>
+  <h1 class="black">The Big (Data) Picture ...</h1>
+    <article class="smaller"><br> 
+    <div>
+    <div style="float:left" width="200px">
+      <h1>The age of Big Data</h1> <br>
+      <ul class="build">
+      <li class="to-build">Google: > 25 PB/day processed data</li>
+      <li class="to-build">Facebook: > 400TB/day : 83 million pictures (estimated 30 mio are selfies)</li>
+      <li class="to-build">LHC: > 2 PB/sec</li>
+      </ul>
+    </div>
+  <div style="float:right" class="build">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/bigdata.jpg"><br>
+  </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">The Big Data </h1>
+    <article class="smaller"><br> 
+    <iframe src="https://snap.stanford.edu/data/web-Amazon.html"></iframe><br>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Running ML locally on >40 GB</h1>
+    <article class=""><br> 
+    <div style="float:bottom" width="300px">
+      <h1 class="build">One computer is not enough! </h1> <br>
+      <ul class="build">
+      <li class="to-build">We run R on it. Loading the data already crushed the system</li>
+      <li class="to-build">Even with small datasets, complex ML tasks like image recognition can crush the system</li>
+      <li class="to-build">Conclusion: We need to scale it up!</li>
+      </ul>
+    </div>
+    <img src="pics/giphy.gif">
+    </article>
+  </slide>
+
+  <slide>
   <h1 class="black">Preparation & Setup</h1>
     <article class="smaller"><br> 
     <div>
     <div style="float:left" width="300px">
       <h1>OpenStack</h1> <br>
       <ul>
-      <li>SOCKS Proxy</li>
+      <li>1. Problem: X11 Forwarding is superslow</li>
       </ul>
     </div>
-	<div style="float:right">
-		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
-	</div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">SOCKS Proxy Solution</h1>
+    <article class="smaller"> <br><br><br><br>
+       <pre class="prettyprint" data-lang="bash">
+       ssh -TND [LOCALPORT] -p 8574 [username]@dataminer.informatik.tu-muenchen.de
+      </pre>
+
+      <ul class="build">
+      <li>Allows us to interact with OpenStack in realtime</li>
+      <li class="to-build">Later we introduced an even more advanced version to access the GUI and allowed graphical debugging. Very very useful later!</li>
+      </ul>
+      <div class="build">
+      <pre class="prettyprint" data-lang="bash">
+       ssh -f -N -D [port number] -i [private key for VM on your local machine] /
+        -oProxyCommand="ssh -W %h:%p -p 8574 [user name]@dataminer.informatik.tu-muenchen.de" /
+        ubuntu@[ip to your machine]
+      </pre>
+      </div>
     </article>
   </slide>
 
@@ -168,9 +229,9 @@ ga('send', 'pageview');
       <ul>
       <li>SOCKS Proxy</li>
       <li>Login : Dataminer & Openstack</li>
-      <li>Create Instance</li>
+      <li>Created Instance</li>
       </ul>
-    </div>
+    </div> 
 	<div style="float:right">
 		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
     	<img style="float:right;margin-right: 250px;margin-top:40px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
@@ -184,18 +245,40 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div>
     <div style="float:left" width="300px">
-      <h1>Graphic User Interface (GUI)</h1> <br>
+      <h1>OpenStack</h1> <br>
       <ul>
-      <li>SOCKS Proxy to VM on dataminer</li>
-      <li>GUI ports</li>
-      	<ul><li>Mesos GUI</li></ul>
-        <ul><li>Marathon GUI</li></ul>
-        <ul><li>Chronos GUI</li></ul>
-        <ul><li>Hadoop GUI</li></ul>
+      <li>SOCKS Proxy</li>
+      <li>Login : Dataminer & Openstack</li>
+      <li>Created Instance</li>
+      <li>Problem: Debian Wheezy has insufficient rootfs memory.
       </ul>
+    </div> 
+  <div style="float:right">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
+      <img style="float:right;margin-right: 250px;margin-top:40px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+      <img style="float:right;margin-top:10px" width="600px" heigth="400px"  src="pics/network.png">  
     </div>
-	<div style="float:right">
-	<!-- images maybe? -->
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+      <h1>OpenStack</h1> <br>
+      <ul>
+      <li>SOCKS Proxy</li>
+      <li>Login : Dataminer & Openstack</li>
+      <li>Created Instance</li>
+      <li>Solution: Switched to Ubuntu LTE
+      <li>We provided Ubuntu for the whole course
+      </ul>
+    </div> 
+  <div style="float:right">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/ssh.png"><br>
+      <img style="float:right;margin-right: 250px;margin-top:40px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+      <img style="float:right;margin-top:10px" width="600px" heigth="400px"  src="pics/network.png">  
     </div>
     </article>
   </slide>
@@ -503,23 +586,6 @@ ga('send', 'pageview');
     </div><br>
     <div id="container10" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
     </article>
-  </slide>
-
-  <slide>
-    <hgroup>
-      <h1 class="black">Tips for Nest Time</h1>
-    </hgroup>
-    <article class="smaller">
-    <div style="float:left">
-      <ul>
-      <li>We know it's your first time...</li>
-      <li>This is our guildline for the next ime! </li>
-      </ul>
-      </div>
-    </article>
-    <div style="float:right">
-    <img style="float:right;margin-right:100px;" width="400px" src="pics/script.png">    
-    </div>
   </slide>
 
   <slide>
