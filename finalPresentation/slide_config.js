@@ -22,7 +22,7 @@ var SLIDE_CONFIG = {
 
   // Author information
   presenters: [{
-    name: 'Sebastian David Iris!',
+    name: 'David Dao, Iris Shih and Sebastian Wilzbach',
     company: '',
     //gplus: 'https://plus.google.com/111225444277358003374/posts',
     //www: 'http://www.ebi.ac.uk/~mp/',
