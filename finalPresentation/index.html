@@ -42,25 +42,6 @@ URL: https://code.google.com/p/io-2012-slides
 </style>
 
 <body style="opacity: 0">
-<script src="http://d3js.org/d3.v2.min.js?2.9.6"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-46895817-2', 'auto');
-ga('send', 'pageview');
-</script>
-
-<link rel="stylesheet" type="text/css" href="style.css" />
-
-<script src="js/convnet-min.js"></script>
-<script src="js/convnet_demo.js"></script>
 
 <slides class="layout-widescreen">
 
@@ -476,10 +457,23 @@ ga('send', 'pageview');
        fab -R master setup
        fab -P -R client setup
        fab -R master updateClients start
-       fab -R hdfsTest //Test your installation
-      </pre>
+       fab -R hdfsTest //Test your installation</pre>
+
+	  <br>
+	  Script your cluster with python:
+	  <br>
+	  <br>
+
+      <pre class="prettyprint" data-lang="Fabric + Cuisine">
+    package_ensure('openjdk-7-jdk')
+    ...
+    file_update(configDir + '/core-site.xml', lambda _:
+        re.sub('(?<=&lt;configuration&gt;)(.|\n)*(?=\n<\/configuration>)', siteConfig, _))
+    ...
+    dir_ensure(storeDir + "/hdfs/datanode", recursive=True, owner=userName, group=userName)</pre>
+
     </div>
-	<div style="float:right">
+	<div style="float:right; display: none">
 	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
 
     </div>
@@ -616,6 +610,28 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
   </slide>
 
   <slide>
+  <h1 class="black">Spark: Scala vs. Java vs. Python </h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="100%">
+      <h1>Calculting the mean of all reviews? </h1><br>
+      <pre class="prettyprint" data-lang="Scala (2)">val rows = sc.textFile(inputFile).map(x => x.split("\016"))
+val totalMean = rows.map(x => x(6).toDouble).mean()                        </pre>
+      <pre class="prettyprint" data-lang="Python (2)">rows = sc.textFile(inputFile).map(lambda x: x.split("\016"))                               
+totalMean = rows.map(lambda x: float(x[6])).mean()</pre>
+      <pre class="prettyprint" data-lang="Java (8)">JavaRDD<String> file = sc.textFile(inputFile);
+JavaRDD&lt;List&lt;String&gt;&gt; lines = file.map(s -&gt; Arrays.asList(s.split("\016")));
+JavaDoubleRDD ratings = lines.mapToDouble(new DoubleFunction&lt;List&lt;String&gt;&gt;(){
+    public double call(List&lt;String&gt; s){
+        return Double.parseDouble(s.get(6));
+    }
+});
+Double totalMean  = ratings.mean();</pre>
+    </div>
+    </article>
+  </slide>
+ 
+
+  <slide>
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
@@ -733,6 +749,8 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
     <article class="smaller">
     <div style="float:left">
       <h1>“Don’t jump in at the dead end”</h1><br>
+	  Experience
+	  <p style="font-size: 14px"> </p>
       <ul>
       <li>If stuck with a problem, try a different approach
       <li>If there is a bug, contact our lecturers as soon as possible
@@ -741,6 +759,12 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
       <li>If too much went wrong, just restart
       <li>Take a lot of snapshots
     </ul>
+	Technologies 
+	  <p style="font-size: 14px"> </p>
+      <ul>
+		  <li> Scala(Spark) very important for DDM
+		  <li> Rise of easy and scalables enviroment (e.g. Amazon EC2, Google ComputeEngine)
+      </ul>
       </div>
     </article>
   </slide>
@@ -800,106 +824,20 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
     </p>
   </slide>
 
-   <script>
 
-var width = 500,
-    height = 500;
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-var color = d3.scale.category20();
-
-var radius = d3.scale.sqrt()
-    .range([0, 6]);
-
-var svg = d3.selectAll(".iris").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-var force = d3.layout.force()
-    .size([width, height])
-    .charge(-400)
-    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 20; });
-
-var vis = function(graph) {
-  force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .on("tick", tick)
-      .start();
-
-  var link = svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("g")
-      .attr("class", "link");
-
-  link.append("line")
-      .style("stroke-width", function(d) { return (d.bond * 2 - 1) * 2 + "px"; });
-
-  link.filter(function(d) { return d.bond > 1; }).append("line")
-      .attr("class", "separator");
-
-  var node = svg.selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("g")
-      .attr("class", "node")
-      .call(force.drag);
-
-  node.append("circle")
-      .attr("r", function(d) { return radius(d.size); })
-      .style("fill", function(d) { return color(d.atom); });
-
-  node.append("text")
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .text(function(d) { return d.atom; });
-
-  function tick() {
-    link.selectAll("line")
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  }
-};
-
-var graph = 
-{
-  "nodes": [
-    {"atom": "C", "size": 12},
-    {"atom": "C", "size": 12},
-    {"atom": "C", "size": 12},
-    {"atom": "N", "size": 14},
-    {"atom": "H", "size": 1},
-    {"atom": "O", "size": 16},
-    {"atom": "O", "size": 16},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1}
-  ],
-  "links": [
-    {"source": 0, "target": 1,  "bond": 1},
-    {"source": 1, "target": 2,  "bond": 1},
-    {"source": 1, "target": 3,  "bond": 1},
-    {"source": 2, "target": 5,  "bond": 2},
-    {"source": 2, "target": 6,  "bond": 1},
-    {"source": 1, "target": 4,  "bond": 1},
-    {"source": 3, "target": 10, "bond": 1},
-    {"source": 3, "target": 11, "bond": 1},
-    {"source": 0, "target": 7,  "bond": 1},
-    {"source": 0, "target": 8,  "bond": 1},
-    {"source": 0, "target": 9,  "bond": 1},
-    {"source": 5, "target": 12, "bond": 1}
-  ]
-};
-
-vis(graph);
-
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-46895817-2', 'auto');
+ga('send', 'pageview');
 </script>
-
 
 <script>
 var _gaq = _gaq || [];
@@ -1538,8 +1476,8 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-			{name: "ScalaSpark", y: 33.53, color: "#FFAE00"},
-			{name: "PythonSpark", y: 65.28, color: "#FF0000"}
+			{name: "ScalaSpark", y: 34.53, color: "#FF530D"},
+			{name: "PythonSpark", y: 65.28, color: "#E80C7A"}
             ],
             dataLabels: {
                 enabled: true,

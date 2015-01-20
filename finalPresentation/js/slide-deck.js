@@ -64,6 +64,10 @@ SlideDeck.prototype.loadSlide = function(slideNo) {
  */
 SlideDeck.prototype.onDomLoaded_ = function(e) {
   document.body.classList.add('loaded'); // Add loaded class for templates to use.
+  if(this.container == undefined){
+    console.warn("unable to load");
+    return false;
+  }
 
   this.slides = this.container.querySelectorAll('slide:not([hidden]):not(.backdrop)');
 
