@@ -523,29 +523,24 @@ ga('send', 'pageview');
       <h1>How easy to run ? </h1><br>
       <ul>
       <li>
-      <pre class="prettyprint" data-lang="hadoop">
-      # compile
-      mkdir wc_classes
-      javac -cp /path/to/hadoop-core-0.20.205.0.jar -d wc_classes WordCount.java
-      jar -cvf wordcount.jar -C wc_classes .
+      <pre class="prettyprint" data-lang="Hadoop"># compile
+mkdir wc_classes
+javac -cp /path/to/hadoop-core-0.20.205.0.jar -d wc_classes WordCount.java
+jar -cvf wordcount.jar -C wc_classes .
 
-      # submit it to hadoop
-      hadoop jar wordcount.jar WordCount ../input/dummy out
-      </pre>
+# submit it to hadoop                                                                       
+hadoop jar wordcount.jar WordCount <in> <out></pre>
       <li>
-      <pre class="prettyprint" data-lang="pig">
-      export JAVA_HOME=/usr/lib/jvm/default
-      pig -f wordcount.pig
-      </pre>
+      <pre class="prettyprint" data-lang="Pig">pig -f wordcount.pig</pre>
       <li>
-      <pre class="prettyprint" data-lang="spark scala">
-      sbt package
-      spark-submit --class WordCount target/scala-2.11/word-counting_2.11-1.0.jar ../input/dummy out
-      </pre>
+      <pre class="prettyprint" data-lang="ScalaSpark">sbt package
+spark-submit --class WordCount target/scala-2.11/word-counting_2.11-1.0.jar <in> <out></pre>
       <li>
-      <pre class="prettyprint" data-lang="pyspark">
-      spark-submit wordcount.py input/dummy out/py
-      </pre>
+      <pre class="prettyprint" data-lang="JavaSpark">mvn package
+spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
+ 
+      <li>
+      <pre class="prettyprint" data-lang="PySpark">spark-submit wordcount.py <in> <out></pre>
       </ul>
 
 
@@ -594,12 +589,10 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-      <h1>Scaling up</h1><br>
-      <ul>
-        <li>Performance</li>
-      </ul>
-    </div>
-    <div id="container7" style="margin-top:50px; margin-left:200px; width: 650px; height: 500px;" width="300px"></div>  
+    	<h1>PySpark vs. ScalaSpark</h1><br>
+      <ul>Analyzing Swissprot: Calculating the amino acid distribution.</ul>
+    </div><br>
+    <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
     </article>
   </slide>
 
@@ -607,10 +600,12 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-    	<h1>PySpark vs. ScalaSpark</h1><br>
-      <ul>Analyzing Uniprot: Calculating the amino acid distribution.</ul>
-    </div><br>
-    <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
+      <h1>Scaling up</h1><br>
+      <ul>
+        <li>Performance</li>
+      </ul>
+    </div>
+    <div id="container7" style="margin-top:50px; margin-left:200px; width: 650px; height: 500px;" width="300px"></div>  
     </article>
   </slide>
 
@@ -1242,12 +1237,12 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-                ['Hadoop Reduce', 702.41],
-                ['Pig', 609.30],
-                ['PySpark', 247.47],
-                ['JavaSpark', 60.63],
-                ['Spark', 58.86],
-                ['Spark(8 cores)', 53.25]
+			{name: 'Hadoop Reduce', y: 703, color: "#3A0DFF"},
+            {name: 'Pig', y: 609, color: "#CB0CE8"},
+            {name: 'PySpark', y: 247, color: "#FF0000"},
+            {name: 'JavaSpark', y: 61, color: "#E85C0C"},
+            {name: 'Spark', y: 59, color: "#FFAE00"},
+            {name: 'Spark(8 cores)', y: 53, color: "#FFAE00"}
             ],
             dataLabels: {
                 enabled: true,
@@ -1281,6 +1276,7 @@ $(function () {
         },
         xAxis: {
             type: 'category',
+            categories: ["ec2, 1 node", "ec2, 3 nodes", "local, 1 core", "local, 8 cores"],
             labels: {
                 rotation: -45,
                 style: {
@@ -1295,35 +1291,31 @@ $(function () {
                 text: 'Duration (s)'
             }
         },
-        legend: {
-            enabled: false
+     	legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -70,
+            y: 53,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
         },
         tooltip: {
             pointFormat: 'Duration Time: <b>{point.y:.1f} mins</b>'
         },
         series: [{
-            name: 'Duration',
-            data: [
-                ['ScalaSpark (ec2, 1 n)', 640.72],
-                ['JavaSpark (ec2, 1 n)', 614.70],
-                ['ScalaSpark (ec2, 3 n)', 177.83],
-                ['JavaSpark(ec2, 3 n)', 185.50],
-            ],
-            color: '#66CDAA',
-            dataLabels: {
-                enabled: true,
-                rotation: 0,
-                color: '#FFFFFF',
-                align: 'center',
-                x: 0,
-                y: 20,
-                style: {
-                    fontSize: '12px',
-                    fontFamily: 'Verdana, sans-serif',
-                    textShadow: '0 0 3px black'
-                }
-            }
-        }]
+            name: 'Scala',
+            data: [614, 178, 312, 100]
+		}, {
+			name: 'Java',
+			data: [641, 186, 311, 133]
+		},{
+			name: 'Python',
+			data: [0, 0, 1286, 611]
+		}
+        ],
     });
 });
 </script>
@@ -1512,7 +1504,7 @@ $(function () {
             text: 'Python vs. Scala'
         },
         subtitle: {
-            text: 'Spark performance: Analyzing Uniport (547.085 entries)'
+            text: 'Spark performance: Analyzing Swissport (547.085 entries)'
         },
         xAxis: {
             type: 'category',
@@ -1536,13 +1528,13 @@ $(function () {
         tooltip: {
             pointFormat: 'Total Time: <b>{point.y:.1f} secs</b>'
         },
+        colors: ["red", "blue"],
         series: [{
             name: 'Duration',
             data: [
-                ['Scala Spark', 33.53],
-                ['Python Spark', 65.28],
+			{name: "ScalaSpark", y: 33.53, color: "#FF530D"},
+			{name: "PythonSpark", y: 65.28, color: "#E80C7A"}
             ],
-            color: '#87CEFA',
             dataLabels: {
                 enabled: true,
                 //rotation: -90,
