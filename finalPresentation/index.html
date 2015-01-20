@@ -156,6 +156,12 @@ ga('send', 'pageview');
   <slide>
   <h1 class="black">Running ML locally on >40 GB</h1>
     <article class="smaller"><br> 
+    </article>
+  </slide>
+  
+  <slide>
+  <h1 class="black">Running ML locally on >40 GB</h1>
+    <article class="smaller"><br> 
     <div style="float:left">
       <img src="pics/giphy.gif" style="margin-left: 300px">
       <h1 class="build" style="margin-left: 280px">One computer is not enough! </h1> <br>
@@ -591,7 +597,7 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
     <div style="float:left" width="300px">
     	<h1>PySpark vs. ScalaSpark</h1><br>
       <ul>Analyzing Swissprot: Calculating the amino acid distribution.</ul>
-    </div><br>
+    </div>
     <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
     </article>
   </slide>
@@ -617,7 +623,7 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
       <ul>Why?<br>One of Mahouts usable features. Great Support on both sides (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
     </div><br><br>
     <div style="float:right">
-		<img style="margin-right:220px;" width="500px"src="pics/recommendation.png">    
+		<img style="margin-right:150px;" width="500px"src="pics/recommendation.png">    
     </div>    
     </article>
   </slide>
@@ -643,7 +649,7 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
       <li>Also Performance hidden in the detail: MLLibs Vector Data Type is highly performant
 	  </ul>
     </div><br>
-    <div id="cast"></div>
+    <div id="cast" style="float:left;margin-left:170px"></div>
     
     </article>
   </slide>
@@ -656,7 +662,7 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
       <ul>Easy?</ul>
     </div><br>
     <div style="float:left">
-    	<img style="margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
+    	<img style="margin-left:100px;margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
     </div> 
     </article>
   </slide>
@@ -669,7 +675,7 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
       <ul>They are not easy!</ul>
     </div><br>
     <div style="float:left">
-    	<img style="margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
+    	<img style="margin-left:30px;margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
     </div> 
     </article>
   </slide>
@@ -680,8 +686,8 @@ spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
     <div style="float:left" width="300px">
       <h1>ML Pipeline (Spark v1.2)</h1><br>
       <div style="float:left">
-      <img style="margin-top:100px;" width="500px" src="pics/mlliboverview.png">
-      <img style="margin-top:100px;" width="400px" src="pics/mllibdetail.png">    
+        <img style="margin-left:20px;margin-top:50px;" width="470px" src="pics/mlliboverview.png">
+        <img style="margin-left:100px;margin-top:50px;" width="380px" src="pics/mllibdetail.png">    
      </div>
     </div><br>
     </article>
@@ -1532,8 +1538,8 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-			{name: "ScalaSpark", y: 33.53, color: "#FF530D"},
-			{name: "PythonSpark", y: 65.28, color: "#E80C7A"}
+			{name: "ScalaSpark", y: 33.53, color: "#FFAE00"},
+			{name: "PythonSpark", y: 65.28, color: "#FF0000"}
             ],
             dataLabels: {
                 enabled: true,
