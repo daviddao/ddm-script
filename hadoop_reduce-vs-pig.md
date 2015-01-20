@@ -42,7 +42,7 @@ PySpark: 11m01.30s
 
 JavaSpark: 5m12.84s
 ScalaSpark: 5m11.33s
-PySpark:  
+PySpark: 21m26.94s
 
 (6.5G, 160.580.000 lines)
 
