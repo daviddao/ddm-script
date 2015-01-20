@@ -7,7 +7,7 @@ $(function () {
             text: 'Regression'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: 'Source: Nature Methods'
         },
         xAxis: {
             title: {

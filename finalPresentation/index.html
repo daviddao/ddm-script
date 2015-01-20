@@ -309,18 +309,42 @@ ga('send', 'pageview');
   </slide>
 
   <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+      <h1>Mesos Results</h1><br>
+      <ul>
+        <li>Easy to install
+        <li>Easy to run apps
+        <li>Robust
+        <li>No performance gain when already using HDFS
+        <li>Useful, if we have different apps running <br>
+      </ul>
+    </div>
+   <div style="float:right">
+        <img style="float:right;margin-right: 180px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+      <img style="float:right;margin-right: 150px;margin-top: 30px" width="200px" heigth="200px"  src="pics/mesos.png">
+    </div>
+    </article>
+  </slide>
+
+  <slide>
   <h1 class="black">Hadoop & Spark</h1>
     <article class="smaller"><br>
     <div>
     <div style="float:left" width="300px">
-    	<h1>Usibility (Setup & API)</h1><br>
+    	<h1>Usability (Setup & API)</h1><br>
       <ul>
       	<li>How much effort is Hadoop?</li>
       	<li>How much effort is Spark? </li>
       </ul>
     </div>
-	<div style="float:right">
-	<!-- images maybe? -->
+	 <div style="float:right">
+        <img style="float:right;margin-right: 180px" width="120px" heigth="120px"  src="pics/openstack.png"><br>
+      <img style="float:right;margin-right: 150px;margin-top: 30px" width="200px" heigth="200px"  src="pics/mesos.png"><br><br>
+      <img style="float:right;margin-right: 60px;margin-top: 40px" width="180px" heigth="180px"  src="pics/spark.png">
+      <img style="float:right;margin-right: 10px;margin-top: 40px" width="180px" heigth="180px"  src="pics/hadoop.png">
     </div>
     </article>
   </slide>
@@ -330,13 +354,34 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div>
     <div style="float:left" width="300px">
+      <h1>Hadoop in-depth</h1><br>
+      <ul class="build">
+        <li class="to-build">Wide use in industry</li>
+        <li class="to-build">Comes with HDFS and YARN</li>
+        <li class="to-build">Code in Java</li>
+        <li class="to-build">Pig for SQL in Hadoop</li>
+        <li class="to-build">Mahout for Machine Learning</li>
+      </ul>
+    </div>
+  <div style="float:right">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/hadoop.png"><br>
+    </div>
+    </article>
+  </slide>
+
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
     	<h1>Spark in-depth</h1><br>
       <ul>
-      	<li>Tools for spark</li>
+      	<li>Good API for spark</li>
       </ul>
     </div>
 	<div style="float:right">
-	<!-- images maybe? -->
+      <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/spark.png"><br>
     </div>
     </article>
   </slide>
@@ -348,12 +393,12 @@ ga('send', 'pageview');
     <div style="float:left" width="300px">
     	<h1>Spark in-depth</h1><br>
       <ul>
-      	<li>Tools for spark</li>
-      	<li>Spark language</li>
+      	<li>Good API for spark</li>
+      	<li>Many supported languages</li>
       </ul>
     </div>
 	<div style="float:right">
-	<!-- images maybe? -->
+        <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/spark.png"><br>
     </div>
     </article>
   </slide>
@@ -365,27 +410,8 @@ ga('send', 'pageview');
     <div style="float:left" width="300px">
     	<h1>Spark in-depth</h1><br>
       <ul>
-      	<li>Tools for spark</li>
-      	<li>Spark language</li>
-      	<li>Streaming</li>
-      </ul>
-    </div>
-	<div style="float:right">
-		<img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/sparkStreaming.png"><br>
-    </div>
-    </article>
-  </slide>
-
-  <slide>
-  <h1 class="black">Hadoop & Spark</h1>
-    <article class="smaller"><br>
-    <div>
-    <div style="float:left" width="300px">
-    	<h1>Spark in-depth</h1><br>
-      <ul>
-      	<li>Tools for spark</li>
-      	<li>Spark language</li>
-      	<li>Streaming</li>
+      	<li>Good API for spark</li>
+      	<li>Many supported languages</li>
       	<li>SQL</li>
       </ul>
     </div>
@@ -400,12 +426,16 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div>
     <div style="float:left" width="300px">
-    	<h1>Mesos</h1><br>
+      <h1>Spark in-depth</h1><br>
       <ul>
+        <li>Good API for Spark</li>
+        <li>Many supported languages</li>
+        <li>SQL</li>
+        <li>Streaming</li>
       </ul>
     </div>
-	<div style="float:right">
-		<img style="float:right;margin-top:20px" width="600px" heigth="400px" src="pics/mesosarchitecture.jpg">
+  <div style="float:right">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/sparkStreaming.png"><br>
     </div>
     </article>
   </slide>
@@ -415,12 +445,114 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div>
     <div style="float:left" width="300px">
-    	<h1>Cluster Management by Sebs FabScript</h1><br>
+      <h1>Spark in-depth</h1><br>
       <ul>
+        <li>Good API for Spark</li>
+        <li>Many supported languages</li>
+        <li>SQL</li>
+        <li>Streaming</li>
+        <li>MLLib</li>
       </ul>
     </div>
+  <div style="float:right">
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/MLLib.png"><br>
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Install Hadoop & Mesos in one minute</h1><br>
+      <pre class="prettyprint" data-lang="bash">
+       fab -R master setup
+       fab -P -R client setup
+       fab -R master updateClients start
+       fab -R hdfsTest //Test your installation
+      </pre>
+    </div>
 	<div style="float:right">
-	<!-- images maybe? -->
+	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
+
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="100%">
+      <h1>LoC (Lines of Code) ? </h1><br>
+      <ul>
+      <li>Hadoop WordCount consists of 54 Lines (see script)
+      <li>Pig Script (5 Lines)
+      <pre class="prettyprint" data-lang="pig">
+      a = load 'input/dummy';
+      b = foreach a generate flatten(TOKENIZE((chararray)$0)) as word;
+      c = group b by word;
+      d = foreach c generate COUNT(b), group;
+      store d into 'out/pig';
+      </pre>
+      <li>Spark Script in Scala (3 Lines)
+      <pre class="prettyprint" data-lang="spark">
+      val file = sc.textFile(args(0))
+      val counts = file.flatMap(line => line.split(" "))
+                     .map(word => (word, 1))
+                     .reduceByKey(_ + _)
+      counts.saveAsTextFile(args(1))
+      </pre>
+      </ul>
+
+
+
+    </div>
+  <div style="float:right">
+  <!-- images maybe? -->
+    </div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="100%">
+      <h1>How easy to run ? </h1><br>
+      <ul>
+      <li>
+      <pre class="prettyprint" data-lang="hadoop">
+      # compile
+      mkdir wc_classes
+      javac -cp /path/to/hadoop-core-0.20.205.0.jar -d wc_classes WordCount.java
+      jar -cvf wordcount.jar -C wc_classes .
+
+      # submit it to hadoop
+      hadoop jar wordcount.jar WordCount ../input/dummy out
+      </pre>
+      <li>
+      <pre class="prettyprint" data-lang="pig">
+      export JAVA_HOME=/usr/lib/jvm/default
+      pig -f wordcount.pig
+      </pre>
+      <li>
+      <pre class="prettyprint" data-lang="spark scala">
+      sbt package
+      spark-submit --class WordCount target/scala-2.11/word-counting_2.11-1.0.jar ../input/dummy out
+      </pre>
+      <li>
+      <pre class="prettyprint" data-lang="pyspark">
+      spark-submit wordcount.py input/dummy out/py
+      </pre>
+      </ul>
+
+
+
+    </div>
+  <div style="float:right">
+  <!-- images maybe? -->
     </div>
     </article>
   </slide>
@@ -431,15 +563,16 @@ ga('send', 'pageview');
     <div style="float:left" width="200px">
     	<h1>Performance comparision between different methods.</h1><br>
       <ul>
-      	<li>Pig vs. Spark</li>
-      	<li>PySpark vs. ScalaSpark</li>
+      	<li>Hadoop/Pig vs. Spark</li>
+      	<li>Spark is not equal Spark</li>
       	<li>MLlib vs. Mahout</li>
+        <li>Cast performance</li>
       </ul>
     </div>    
-    </article>
     <div style="float:right">
-		<img style="margin-right:220px;" width="200px"src="pics/img-myhadoop-bigger4.jpg">    
+    <img width="260px"src="pics/img-myhadoop-bigger4.jpg">    
     </div>
+    </article>
 
   </slide>
 
@@ -448,7 +581,7 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <!-- <div id="container7" style="float:right; margin-right:50px; margin-top:150px; width: 400px; height: 400px;" width="300px"></div>   -->
     <div style="float:left" width="300px">
-    	<h1>Pig vs. Spark</h1><br>
+    	<h1>Hadoop vs. Spark</h1><br>
       <ul>
       	<li>Performance</li>
       </ul>
@@ -461,7 +594,7 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-      <h1>Pig vs. Spark</h1><br>
+      <h1>Scaling up</h1><br>
       <ul>
         <li>Performance</li>
       </ul>
@@ -485,8 +618,8 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-    	<h1>Movie Recommendation</h1><br>
-      <ul>Why?<br>One of Mahouts usable features Great Support on both (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
+    	<h1>Recommendation</h1><br>
+      <ul>Why?<br>One of Mahouts usable features. Great Support on both sides (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
     </div><br><br>
     <div style="float:right">
 		<img style="margin-right:220px;" width="500px"src="pics/recommendation.png">    
@@ -498,47 +631,25 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-    	<h1>Movie Recommendation</h1><br>
-      <ul>Why?<br>One of Mahouts usable features Great Support on both (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
-    </div><br>    
-    </article><br>  
-    <div style="float:left">
-    //Here are either the Code snippets : Mahout & Spark or a live demo
-    </div>
-  </slide>
-
-  <slide>
-  <h1 class="black">Performance Analysis</h1>
-    <article class="smaller"><br>
-    <div style="float:left" width="300px">
     	<h1>MLlib vs. Hadoop</h1><br>
-      <ul>Movie Recommender System:<br>On a dataset with 660M users, 2.4M items, and 3.5GB ratings LMlib runs in 40 minutes with 50 nodes.</ul>
+      <ul>Recommender System:<br>On a dataset with 660M users, 2.4M items, and 3.5GB ratings LMlib runs in 40 minutes with 50 nodes.</ul>
     </div><br>
     <div id="container2" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
     </article>
   </slide>
 
   <slide>
-  <h1 class="black">Why is MLlib faster?</h1>
-    <article class="smaller"><br>
-    <div style="float:left" width="300px">
-    	<h1>The current version of Mahout runs on Hadoop MapReduce, whose scheduling overhead and lack of support for iterative computation substantially slows down ALS</h1><br>
-      <ul>Performance hidden in the detail:<br> MLLibs Vector Data Type is highly performant for MLLib:<br>
- 		// Here will be the CAST time comparisions of Vector, Breeze and Standard Java Arrays
-	  </ul>
-    </div><br>
-    
-    </article>
-  </slide>
-
-  <slide>
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
-    	<h1>MLlib:</h1><br>
-      <ul>Vector Casts vs. Breeze Casts vs. Integer Cast</ul>
+    	<h1>Why is MLLib faster than Mahout 0.8? </h1><br>
+      <ul>
+      <li>The 0.8 version of Mahout runs on Hadoop MapReduce, whose scheduling overhead and lack of support for iterative computation substantially slows down ALS
+      <li>Also Performance hidden in the detail: MLLibs Vector Data Type is highly performant
+	  </ul>
     </div><br>
-    <div id="" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
+    <div id="cast"></div>
+    
     </article>
   </slide>
 
@@ -547,7 +658,7 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div style="float:left" width="300px">
     	<h1>ML Pipeline</h1><br>
-      <ul>They are not that easy!</ul>
+      <ul>Easy?</ul>
     </div><br>
     <div style="float:left">
     	<img style="margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
@@ -560,11 +671,24 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div style="float:left" width="300px">
     	<h1>ML Pipeline</h1><br>
-      <ul>They are not that easy!</ul>
+      <ul>They are not easy!</ul>
     </div><br>
     <div style="float:left">
     	<img style="margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
     </div> 
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Distributed Data Mining</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
+      <h1>ML Pipeline (Spark v1.2)</h1><br>
+      <div style="float:left">
+      <img style="margin-top:100px;" width="500px" src="pics/mlliboverview.png">
+      <img style="margin-top:100px;" width="400px" src="pics/mllibdetail.png">    
+     </div>
+    </div><br>
     </article>
   </slide>
 
@@ -579,17 +703,7 @@ ga('send', 'pageview');
     <video style="float:center;margin-left: 150px" autoplay loop muted width="700px" heigth="500px"  src="pics/ddm.mp4">
   </slide>
 
-  <slide>
-  <h1 class="black">Distributed Data Mining</h1>
-    <article class="smaller"><br>
-    <div style="float:left" width="300px">
-    	<h1>ML Pipeline (Spark v1.2)</h1><br>
-      <ul></ul>
-    </div><br>
-    </article>
-  </slide>
-
-  <slide>
+<!--   <slide>
   <h1 class="black">Spark for Science</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
@@ -609,7 +723,7 @@ ga('send', 'pageview');
     </div><br>
     <div id="container10" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
     </article>
-  </slide>
+  </slide> -->
 
   <slide>
     <hgroup>
@@ -618,12 +732,14 @@ ga('send', 'pageview');
     <article class="smaller">
     <div style="float:left">
       <h1>“Don’t jump in at the dead end”</h1><br>
-      <ul><ul><ul><ul>
-      <li>SOCKS Proxy</li>
-      <li>Think ifferently</li>
-      <li>Consider alternative approaches</li>
-      <li>...</li>
-      </ul></ul></ul></ul>
+      <ul>
+      <li>If stuck with a problem, try a different approach
+      <li>If there is a bug, contact our lecturers as soon as possible
+      <li>We are all sitting in one boat - If we have a network failure, the other team certainly suffers too (due to the fact that we are all working on the same environment)
+      <li>Use the chance to try out as much new technology as possible
+      <li>If too much went wrong, just restart
+      <li>Take a lot of snapshots
+    </ul>
       </div>
     </article>
   </slide>
@@ -1034,7 +1150,7 @@ $(function () {
             type: 'column'
         },
         title: {
-            text: 'Cluster Setup vs. FabScript'
+            text: 'Cluster Setup vs. FabScript (3 nodes)'
         },
         subtitle: {
             text: ''
@@ -1064,8 +1180,8 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-                ['Cluster Setup', 7.38],
-                ['Script Setup', 0.30],
+                ['Cluster Setup', 30.00],
+                ['Script Setup', 1.00],
             ],
             color: '#87CEFA',
             dataLabels: {
@@ -1192,8 +1308,6 @@ $(function () {
                 ['JavaSpark (ec2, 1 n)', 614.70],
                 ['ScalaSpark (ec2, 3 n)', 177.83],
                 ['JavaSpark(ec2, 3 n)', 185.50],
-                ['ScalaSpark (local, 8 c)', 0.0],
-                ['ScalaSpark (local, 8 c)', 0.0],
             ],
             color: '#66CDAA',
             dataLabels: {
@@ -1292,7 +1406,7 @@ $(function () {
             text: 'Regression'
         },
         subtitle: {
-            text: 'Source: WorldClimate.com'
+            text: 'Source: Mapping brain activity at scale with cluster computing, Jeremy Freeman et al., Nature Methods 11'
         },
         xAxis: {
             title: {
@@ -1303,6 +1417,7 @@ $(function () {
         yAxis: {
             min: 1,
             max: 12000,
+            type: 'logarithmic',
             title: {
                 text: 'Runtime (sec)'
             },
@@ -1435,6 +1550,65 @@ $(function () {
                 align: 'center',
                 x: 0,
                 y: 20,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif',
+                    textShadow: '0 0 3px black'
+                }
+            }
+        }]
+    });
+});
+</script>
+
+<script>
+$(function () {
+    $('#cast').highcharts({
+        chart: {
+            type: 'column'
+        },
+        title: {
+            text: 'Cast performance on EC2 (3 Slave Nodes)'
+        },
+        subtitle: {
+            text: 'Addition (1000 dim, 100000 rows)'
+        },
+        xAxis: {
+            type: 'category',
+            labels: {
+                rotation: -45,
+                style: {
+                    fontSize: '13px',
+                    fontFamily: 'Verdana, sans-serif'
+                }
+            }
+        },
+        yAxis: {
+            min: 0,
+            title: {
+                text: 'Duration (ms)'
+            }
+        },
+        legend: {
+            enabled: false
+        },
+        tooltip: {
+            pointFormat: 'Duration Time: <b>{point.y:.1f} ms</b>'
+        },
+        series: [{
+            name: 'Duration',
+            data: [
+                ['MLLib', 1165],
+                ['Breeze', 879],
+                ['Mahout', 3485]
+            ],
+            dataLabels: {
+                enabled: true,
+                rotation: -90,
+                color: '#FFFFFF',
+                align: 'right',
+                x: 4,
+                y: 10,
                 style: {
                     fontSize: '13px',
                     fontFamily: 'Verdana, sans-serif',
