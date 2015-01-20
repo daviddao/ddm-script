@@ -275,6 +275,41 @@ URL: https://code.google.com/p/io-2012-slides
     </article>
   </slide>
 
+
+  <slide>
+  <h1 class="black">Hadoop & Spark</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Install Hadoop & Mesos in one minute</h1><br>
+      <pre class="prettyprint" data-lang="bash">
+       fab -R master setup
+       fab -P -R client setup
+       fab -R master updateClients start
+       fab -R hdfsTest //Test your installation</pre>
+
+	  <br>
+	  Script your cluster with python:
+	  <br>
+	  <br>
+
+      <pre class="prettyprint" data-lang="Fabric + Cuisine">
+    package_ensure('openjdk-7-jdk')
+    ...
+    file_update(configDir + '/core-site.xml', lambda _:
+        re.sub('(?<=&lt;configuration&gt;)(.|\n)*(?=\n<\/configuration>)', siteConfig, _))
+    ...
+    dir_ensure(storeDir + "/hdfs/datanode", recursive=True, owner=userName, group=userName)</pre>
+
+    </div>
+	<div style="float:right; display: none">
+	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
+
+    </div>
+    </article>
+  </slide>
+
+
   <slide>
   <h1 class="black">Preparation & Setup</h1>
     <article class="smaller"><br>
@@ -437,39 +472,6 @@ URL: https://code.google.com/p/io-2012-slides
     </div>
   <div style="float:right">
     <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/MLlib.png"><br>
-    </div>
-    </article>
-  </slide>
-
-  <slide>
-  <h1 class="black">Hadoop & Spark</h1>
-    <article class="smaller"><br>
-    <div>
-    <div style="float:left" width="300px">
-    	<h1>Install Hadoop & Mesos in one minute</h1><br>
-      <pre class="prettyprint" data-lang="bash">
-       fab -R master setup
-       fab -P -R client setup
-       fab -R master updateClients start
-       fab -R hdfsTest //Test your installation</pre>
-
-	  <br>
-	  Script your cluster with python:
-	  <br>
-	  <br>
-
-      <pre class="prettyprint" data-lang="Fabric + Cuisine">
-    package_ensure('openjdk-7-jdk')
-    ...
-    file_update(configDir + '/core-site.xml', lambda _:
-        re.sub('(?<=&lt;configuration&gt;)(.|\n)*(?=\n<\/configuration>)', siteConfig, _))
-    ...
-    dir_ensure(storeDir + "/hdfs/datanode", recursive=True, owner=userName, group=userName)</pre>
-
-    </div>
-	<div style="float:right; display: none">
-	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
-
     </div>
     </article>
   </slide>
