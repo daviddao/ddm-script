@@ -42,25 +42,6 @@ URL: https://code.google.com/p/io-2012-slides
 </style>
 
 <body style="opacity: 0">
-<script src="http://d3js.org/d3.v2.min.js?2.9.6"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script src="highcharts.js"></script>
-<script src="http://code.highcharts.com/modules/exporting.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-
-<script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-ga('create', 'UA-46895817-2', 'auto');
-ga('send', 'pageview');
-</script>
-
-<link rel="stylesheet" type="text/css" href="style.css" />
-
-<script src="js/convnet-min.js"></script>
-<script src="js/convnet_demo.js"></script>
 
 <slides class="layout-widescreen">
 
@@ -153,6 +134,12 @@ ga('send', 'pageview');
     </article>
   </slide>
 
+  <slide>
+  <h1 class="black">Running ML locally on >40 GB</h1>
+    <article class="smaller"><br> 
+    </article>
+  </slide>
+  
   <slide>
   <h1 class="black">Running ML locally on >40 GB</h1>
     <article class="smaller"><br> 
@@ -282,7 +269,7 @@ ga('send', 'pageview');
       <li>SOCKS Proxy</li>
       <li>Login : Dataminer & Openstack</li>
       <li>Created Instance</li>
-      <li><b>Solution</b>: Switched to <br> Ubuntu LTE
+      <li><b>Solution</b>: Switched to <br> Ubuntu LTS
       <li>We provided Ubuntu for <br> the whole course
       </ul>
     </div> 
@@ -293,6 +280,41 @@ ga('send', 'pageview');
     </div>
     </article>
   </slide>
+
+
+  <slide>
+  <h1 class="black">Preparation & Setup</h1>
+    <article class="smaller"><br>
+    <div>
+    <div style="float:left" width="300px">
+    	<h1>Install Hadoop & Mesos in one minute</h1><br>
+      <pre class="prettyprint" data-lang="bash">
+       fab -R master setup
+       fab -P -R client setup
+       fab -R master updateClients start
+       fab -R hdfsTest //Test your installation</pre>
+
+	  <br>
+	  Script your cluster with python:
+	  <br>
+	  <br>
+
+      <pre class="prettyprint" data-lang="Fabric + Cuisine">
+    package_ensure('openjdk-7-jdk')
+    ...
+    file_update(configDir + '/core-site.xml', lambda _:
+        re.sub('(?<=&lt;configuration&gt;)(.|\n)*(?=\n<\/configuration>)', siteConfig, _))
+    ...
+    dir_ensure(storeDir + "/hdfs/datanode", recursive=True, owner=userName, group=userName)</pre>
+
+    </div>
+	<div style="float:right; display: none">
+	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
+
+    </div>
+    </article>
+  </slide>
+
 
   <slide>
   <h1 class="black">Preparation & Setup</h1>
@@ -455,27 +477,7 @@ ga('send', 'pageview');
       </ul>
     </div>
   <div style="float:right">
-    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/MLLib.png"><br>
-    </div>
-    </article>
-  </slide>
-
-  <slide>
-  <h1 class="black">Hadoop & Spark</h1>
-    <article class="smaller"><br>
-    <div>
-    <div style="float:left" width="300px">
-    	<h1>Install Hadoop & Mesos in one minute</h1><br>
-      <pre class="prettyprint" data-lang="bash">
-       fab -R master setup
-       fab -P -R client setup
-       fab -R master updateClients start
-       fab -R hdfsTest //Test your installation
-      </pre>
-    </div>
-	<div style="float:right">
-	    <div id="container5" style="margin-top:50px; width: 400px; height: 500px;" width="350px"></div>
-
+    <img style="float:right;margin-top:20px" width="600px" heigth="400px"  src="pics/MLlib.png"><br>
     </div>
     </article>
   </slide>
@@ -523,29 +525,24 @@ ga('send', 'pageview');
       <h1>How easy to run ? </h1><br>
       <ul>
       <li>
-      <pre class="prettyprint" data-lang="hadoop">
-      # compile
-      mkdir wc_classes
-      javac -cp /path/to/hadoop-core-0.20.205.0.jar -d wc_classes WordCount.java
-      jar -cvf wordcount.jar -C wc_classes .
+      <pre class="prettyprint" data-lang="Hadoop"># compile
+mkdir wc_classes
+javac -cp /path/to/hadoop-core-0.20.205.0.jar -d wc_classes WordCount.java
+jar -cvf wordcount.jar -C wc_classes .
 
-      # submit it to hadoop
-      hadoop jar wordcount.jar WordCount ../input/dummy out
-      </pre>
+# submit it to hadoop                                                                       
+hadoop jar wordcount.jar WordCount <in> <out></pre>
       <li>
-      <pre class="prettyprint" data-lang="pig">
-      export JAVA_HOME=/usr/lib/jvm/default
-      pig -f wordcount.pig
-      </pre>
+      <pre class="prettyprint" data-lang="Pig">pig -f wordcount.pig</pre>
       <li>
-      <pre class="prettyprint" data-lang="spark scala">
-      sbt package
-      spark-submit --class WordCount target/scala-2.11/word-counting_2.11-1.0.jar ../input/dummy out
-      </pre>
+      <pre class="prettyprint" data-lang="ScalaSpark">sbt package
+spark-submit --class WordCount target/scala-2.11/word-counting_2.11-1.0.jar <in> <out></pre>
       <li>
-      <pre class="prettyprint" data-lang="pyspark">
-      spark-submit wordcount.py input/dummy out/py
-      </pre>
+      <pre class="prettyprint" data-lang="JavaSpark">mvn package
+spark-submit --class WordCount target/word-counting-1.0.jar <in> <out></pre>
+ 
+      <li>
+      <pre class="prettyprint" data-lang="PySpark">spark-submit wordcount.py <in> <out></pre>
       </ul>
 
 
@@ -594,6 +591,17 @@ ga('send', 'pageview');
   <h1 class="black">Performance Analysis</h1>
     <article class="smaller"><br>
     <div style="float:left" width="300px">
+    	<h1>PySpark vs. ScalaSpark</h1><br>
+      <ul>Analyzing Swissprot: Calculating the amino acid distribution.</ul>
+    </div>
+    <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
+    </article>
+  </slide>
+
+  <slide>
+  <h1 class="black">Performance Analysis</h1>
+    <article class="smaller"><br>
+    <div style="float:left" width="300px">
       <h1>Scaling up</h1><br>
       <ul>
         <li>Performance</li>
@@ -604,15 +612,26 @@ ga('send', 'pageview');
   </slide>
 
   <slide>
-  <h1 class="black">Performance Analysis</h1>
+  <h1 class="black">Spark: Scala vs. Java vs. Python </h1>
     <article class="smaller"><br>
-    <div style="float:left" width="300px">
-    	<h1>PySpark vs. ScalaSpark</h1><br>
-      <ul>Analyzing Uniprot: Calculating the amino acid distribution.</ul>
-    </div><br>
-    <div id="container12" style="margin-left:150px; margin-top:100px; width: 650px; height: 400px;" width="600px"></div>
+    <div style="float:left" width="100%">
+      <h1>Calculting the mean of all reviews? </h1><br>
+      <pre class="prettyprint" data-lang="Scala (2)">val rows = sc.textFile(inputFile).map(x => x.split("\016"))
+val totalMean = rows.map(x => x(6).toDouble).mean()                        </pre>
+      <pre class="prettyprint" data-lang="Python (2)">rows = sc.textFile(inputFile).map(lambda x: x.split("\016"))                               
+totalMean = rows.map(lambda x: float(x[6])).mean()</pre>
+      <pre class="prettyprint" data-lang="Java (8)">JavaRDD<String> file = sc.textFile(inputFile);
+JavaRDD&lt;List&lt;String&gt;&gt; lines = file.map(s -&gt; Arrays.asList(s.split("\016")));
+JavaDoubleRDD ratings = lines.mapToDouble(new DoubleFunction&lt;List&lt;String&gt;&gt;(){
+    public double call(List&lt;String&gt; s){
+        return Double.parseDouble(s.get(6));
+    }
+});
+Double totalMean  = ratings.mean();</pre>
+    </div>
     </article>
   </slide>
+ 
 
   <slide>
   <h1 class="black">Performance Analysis</h1>
@@ -622,7 +641,7 @@ ga('send', 'pageview');
       <ul>Why?<br>One of Mahouts usable features. Great Support on both sides (MLLib and Mahout).<br> We run Mahout on Hadoop.</ul>
     </div><br><br>
     <div style="float:right">
-		<img style="margin-right:220px;" width="500px"src="pics/recommendation.png">    
+		<img style="margin-right:150px;" width="500px"src="pics/recommendation.png">    
     </div>    
     </article>
   </slide>
@@ -632,7 +651,7 @@ ga('send', 'pageview');
     <article class="smaller"><br>
     <div style="float:left" width="300px">
     	<h1>MLlib vs. Hadoop</h1><br>
-      <ul>Recommender System:<br>On a dataset with 660M users, 2.4M items, and 3.5GB ratings LMlib runs in 40 minutes with 50 nodes.</ul>
+      <ul>Recommender System:<br>On a dataset with 660M users, 2.4M items, and 3.5GB ratings MLlib runs in 40 minutes with 50 nodes.</ul>
     </div><br>
     <div id="container2" style="margin-left:120px; margin-top:100px; width: 700px; height: 400px;" width="600px"></div>
     </article>
@@ -648,7 +667,7 @@ ga('send', 'pageview');
       <li>Also Performance hidden in the detail: MLLibs Vector Data Type is highly performant
 	  </ul>
     </div><br>
-    <div id="cast"></div>
+    <div id="cast" style="float:left;margin-left:170px"></div>
     
     </article>
   </slide>
@@ -661,7 +680,7 @@ ga('send', 'pageview');
       <ul>Easy?</ul>
     </div><br>
     <div style="float:left">
-    	<img style="margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
+    	<img style="margin-left:100px;margin-top:100px;" width="500px" src="pics/easymlpipeline.png">    
     </div> 
     </article>
   </slide>
@@ -674,7 +693,7 @@ ga('send', 'pageview');
       <ul>They are not easy!</ul>
     </div><br>
     <div style="float:left">
-    	<img style="margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
+    	<img style="margin-left:30px;margin-top:80px;" width="550px" src="pics/mlpipeline.png">    
     </div> 
     </article>
   </slide>
@@ -685,8 +704,8 @@ ga('send', 'pageview');
     <div style="float:left" width="300px">
       <h1>ML Pipeline (Spark v1.2)</h1><br>
       <div style="float:left">
-      <img style="margin-top:100px;" width="500px" src="pics/mlliboverview.png">
-      <img style="margin-top:100px;" width="400px" src="pics/mllibdetail.png">    
+        <img style="margin-left:20px;margin-top:50px;" width="470px" src="pics/mlliboverview.png">
+        <img style="margin-left:100px;margin-top:50px;" width="380px" src="pics/mllibdetail.png">    
      </div>
     </div><br>
     </article>
@@ -732,6 +751,8 @@ ga('send', 'pageview');
     <article class="smaller">
     <div style="float:left">
       <h1>“Don’t jump in at the dead end”</h1><br>
+	  Experience
+	  <p style="font-size: 14px"> </p>
       <ul>
       <li>If stuck with a problem, try a different approach
       <li>If there is a bug, contact our lecturers as soon as possible
@@ -740,6 +761,12 @@ ga('send', 'pageview');
       <li>If too much went wrong, just restart
       <li>Take a lot of snapshots
     </ul>
+	Technologies 
+	  <p style="font-size: 14px"> </p>
+      <ul>
+		  <li> Scala(Spark) very important for DDM
+		  <li> Rise of easy and scalables enviroment (e.g. Amazon EC2, Google ComputeEngine)
+      </ul>
       </div>
     </article>
   </slide>
@@ -799,106 +826,20 @@ ga('send', 'pageview');
     </p>
   </slide>
 
-   <script>
 
-var width = 500,
-    height = 500;
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 
-var color = d3.scale.category20();
-
-var radius = d3.scale.sqrt()
-    .range([0, 6]);
-
-var svg = d3.selectAll(".iris").append("svg")
-    .attr("width", width)
-    .attr("height", height);
-
-var force = d3.layout.force()
-    .size([width, height])
-    .charge(-400)
-    .linkDistance(function(d) { return radius(d.source.size) + radius(d.target.size) + 20; });
-
-var vis = function(graph) {
-  force
-      .nodes(graph.nodes)
-      .links(graph.links)
-      .on("tick", tick)
-      .start();
-
-  var link = svg.selectAll(".link")
-      .data(graph.links)
-    .enter().append("g")
-      .attr("class", "link");
-
-  link.append("line")
-      .style("stroke-width", function(d) { return (d.bond * 2 - 1) * 2 + "px"; });
-
-  link.filter(function(d) { return d.bond > 1; }).append("line")
-      .attr("class", "separator");
-
-  var node = svg.selectAll(".node")
-      .data(graph.nodes)
-    .enter().append("g")
-      .attr("class", "node")
-      .call(force.drag);
-
-  node.append("circle")
-      .attr("r", function(d) { return radius(d.size); })
-      .style("fill", function(d) { return color(d.atom); });
-
-  node.append("text")
-      .attr("dy", ".35em")
-      .attr("text-anchor", "middle")
-      .text(function(d) { return d.atom; });
-
-  function tick() {
-    link.selectAll("line")
-        .attr("x1", function(d) { return d.source.x; })
-        .attr("y1", function(d) { return d.source.y; })
-        .attr("x2", function(d) { return d.target.x; })
-        .attr("y2", function(d) { return d.target.y; });
-
-    node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
-  }
-};
-
-var graph = 
-{
-  "nodes": [
-    {"atom": "C", "size": 12},
-    {"atom": "C", "size": 12},
-    {"atom": "C", "size": 12},
-    {"atom": "N", "size": 14},
-    {"atom": "H", "size": 1},
-    {"atom": "O", "size": 16},
-    {"atom": "O", "size": 16},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1},
-    {"atom": "H", "size": 1}
-  ],
-  "links": [
-    {"source": 0, "target": 1,  "bond": 1},
-    {"source": 1, "target": 2,  "bond": 1},
-    {"source": 1, "target": 3,  "bond": 1},
-    {"source": 2, "target": 5,  "bond": 2},
-    {"source": 2, "target": 6,  "bond": 1},
-    {"source": 1, "target": 4,  "bond": 1},
-    {"source": 3, "target": 10, "bond": 1},
-    {"source": 3, "target": 11, "bond": 1},
-    {"source": 0, "target": 7,  "bond": 1},
-    {"source": 0, "target": 8,  "bond": 1},
-    {"source": 0, "target": 9,  "bond": 1},
-    {"source": 5, "target": 12, "bond": 1}
-  ]
-};
-
-vis(graph);
-
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-46895817-2', 'auto');
+ga('send', 'pageview');
 </script>
-
 
 <script>
 var _gaq = _gaq || [];
@@ -1242,12 +1183,12 @@ $(function () {
         series: [{
             name: 'Duration',
             data: [
-                ['Hadoop Reduce', 702.41],
-                ['Pig', 609.30],
-                ['PySpark', 247.47],
-                ['JavaSpark', 60.63],
-                ['Spark', 58.86],
-                ['Spark(8 cores)', 53.25]
+			{name: 'Hadoop Reduce', y: 703, color: "#3A0DFF"},
+            {name: 'Pig', y: 609, color: "#CB0CE8"},
+            {name: 'PySpark', y: 247, color: "#FF0000"},
+            {name: 'JavaSpark', y: 61, color: "#E85C0C"},
+            {name: 'Spark', y: 59, color: "#FFAE00"},
+            {name: 'Spark(8 cores)', y: 53, color: "#FFAE00"}
             ],
             dataLabels: {
                 enabled: true,
@@ -1281,6 +1222,7 @@ $(function () {
         },
         xAxis: {
             type: 'category',
+            categories: ["ec2, 1 node", "ec2, 3 nodes", "local, 1 core", "local, 8 cores"],
             labels: {
                 rotation: -45,
                 style: {
@@ -1295,35 +1237,31 @@ $(function () {
                 text: 'Duration (s)'
             }
         },
-        legend: {
-            enabled: false
+     	legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            x: -70,
+            y: 53,
+            floating: true,
+            borderWidth: 1,
+            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+            shadow: true
         },
         tooltip: {
             pointFormat: 'Duration Time: <b>{point.y:.1f} mins</b>'
         },
         series: [{
-            name: 'Duration',
-            data: [
-                ['ScalaSpark (ec2, 1 n)', 640.72],
-                ['JavaSpark (ec2, 1 n)', 614.70],
-                ['ScalaSpark (ec2, 3 n)', 177.83],
-                ['JavaSpark(ec2, 3 n)', 185.50],
-            ],
-            color: '#66CDAA',
-            dataLabels: {
-                enabled: true,
-                rotation: 0,
-                color: '#FFFFFF',
-                align: 'center',
-                x: 0,
-                y: 20,
-                style: {
-                    fontSize: '12px',
-                    fontFamily: 'Verdana, sans-serif',
-                    textShadow: '0 0 3px black'
-                }
-            }
-        }]
+            name: 'Scala',
+            data: [614, 178, 312, 100]
+		}, {
+			name: 'Java',
+			data: [641, 186, 311, 133]
+		},{
+			name: 'Python',
+			data: [0, 0, 1286, 611]
+		}
+        ],
     });
 });
 </script>
@@ -1512,7 +1450,7 @@ $(function () {
             text: 'Python vs. Scala'
         },
         subtitle: {
-            text: 'Spark performance: Analyzing Uniport (547.085 entries)'
+            text: 'Spark performance: Analyzing Swissport (547.085 entries)'
         },
         xAxis: {
             type: 'category',
@@ -1536,13 +1474,13 @@ $(function () {
         tooltip: {
             pointFormat: 'Total Time: <b>{point.y:.1f} secs</b>'
         },
+        colors: ["red", "blue"],
         series: [{
             name: 'Duration',
             data: [
-                ['Scala Spark', 33.53],
-                ['Python Spark', 65.28],
+			{name: "ScalaSpark", y: 34.53, color: "#FFAE00"},
+			{name: "PythonSpark", y: 65.28, color: "#FF0000"}
             ],
-            color: '#87CEFA',
             dataLabels: {
                 enabled: true,
                 //rotation: -90,
